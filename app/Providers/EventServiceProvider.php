@@ -35,5 +35,6 @@ class EventServiceProvider extends ServiceProvider
         \App\User::observe(\App\Observers\ModelObserver::class);
         \App\Project::observe(\App\Observers\ModelObserver::class);
         \App\Tool::observe(\App\Observers\ModelObserver::class);
+        \App\AboutLink::observe(\App\Observers\ModelObserver::class);
     }
 }
