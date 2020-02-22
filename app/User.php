@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    function lastChangedBy()
+    {
+        return $this->hasOne(User::class, 'lastChangedBy');
+    }
 }

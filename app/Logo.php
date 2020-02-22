@@ -4,11 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AboutLink extends Model
+class Logo extends Model
 {
-    //The table name fro the model
-    protected $table = 'aboutLinks';
-    
     /**
      * The attributes that are not mass assignable.
      *
@@ -27,9 +24,19 @@ class AboutLink extends Model
         'lastChangedBy'
     ];
     
-    public function logo()
+    function aboutLinks()
     {
-        return $this->hasOne(Logo::class);
+        return $this->hasMany(AboutLink::class);
+    }
+    
+    function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+    
+    function tools()
+    {
+        return $this->hasMany(Tool::class);
     }
     
     function lastChangedBy()

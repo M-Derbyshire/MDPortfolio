@@ -24,18 +24,13 @@ class Project extends Model
         'lastChangedBy'
     ];
     
-    public function logoUrl()
+    public function logo()
     {
-        return $this->hasOne(Url::class, "logoUrl_id");
+        return $this->hasOne(Logo::class);
     }
     
-    public function githubUrl()
+    function lastChangedBy()
     {
-        return $this->hasOne(Url::class, "githubUrl_id");
-    }
-    
-    public function zipUrl()
-    {
-        return $this->hasOne(Url::class, "zipUrl_id");
+        return $this->hasOne(User::class, 'lastChangedBy');
     }
 }

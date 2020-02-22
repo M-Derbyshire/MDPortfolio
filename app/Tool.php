@@ -24,8 +24,13 @@ class Tool extends Model
         'lastChangedBy'
     ];
     
-    public function logoUrl()
+    public function logo()
     {
-        return $this->hasOne(Url::class, "logoUrl_id");
+        return $this->hasOne(Logo::class);
+    }
+    
+    function lastChangedBy()
+    {
+        return $this->hasOne(User::class, 'lastChangedBy');
     }
 }
