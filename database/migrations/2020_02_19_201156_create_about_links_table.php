@@ -17,13 +17,12 @@ class CreateAboutLinksTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('text');
-            $table->unsignedBigInteger('url_id');
-            $table->unsignedBigInteger('logoUrl_id');
+            $table->string('url');
+            $table->unsignedBigInteger('logo_id');
             $table->timestamps();
             $table->unsignedBigInteger('lastChangedBy');
             
-            $table->foreign('url_id')->references('id')->on('urls');
-            $table->foreign('logoUrl_id')->references('id')->on('urls');
+            $table->foreign('logo_id')->references('id')->on('logos');
             $table->foreign('lastChangedBy')->references('id')->on('users');
         });
     }
@@ -35,6 +34,6 @@ class CreateAboutLinksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about_links');
+        Schema::dropIfExists('aboutLinks');
     }
 }

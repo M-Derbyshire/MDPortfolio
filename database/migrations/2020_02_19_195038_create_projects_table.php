@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUrlsTable extends Migration
+class CreateProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,18 @@ class CreateUrlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('urls', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('url');
+            $table->string('title');
+            $table->text('smallDescription');
+            $table->text('description');
+            $table->unsignedBigInteger('logo_id');
+            $table->string('githubUrl');
+            $table->string('zipUrl');
             $table->timestamps();
-            $table->unsignedBigInteger('lastChangedBy');
+            $table->unsignedBigInteger('lastChangedby');
             
+            $table->foreign('logo_id')->references('id')->on('logos');
             $table->foreign('lastChangedBy')->references('id')->on('users');
         });
     }
@@ -30,6 +36,6 @@ class CreateUrlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('urls');
+        Schema::dropIfExists('projects');
     }
 }
