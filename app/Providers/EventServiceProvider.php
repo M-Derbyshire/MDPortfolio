@@ -33,5 +33,6 @@ class EventServiceProvider extends ServiceProvider
         //to each model. However, if this is the initial seeding 
         //of the database with a model, just set lastChangedBy to 0
         \App\User::observe(\App\Observers\ModelObserver::class);
+        \App\Project::observe(\App\Observers\ModelObserver::class);
     }
 }
