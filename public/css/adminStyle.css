@@ -8,3 +8,12 @@
 #menuHeader {
     margin-bottom: 2em;
 }
+
+.menuBackLink {
+    color: #0000FF !important;
+    background-color: rgb(209, 253, 255) !important;
+}
+
+.menuBackLink:hover {
+    background-color: rgb(161, 250, 255) !important;
+}

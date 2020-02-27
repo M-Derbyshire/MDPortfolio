@@ -1,21 +1,22 @@
 @extends('layouts.admin')
 
-@section('title', 'Menu')
+@section('title', $pageTitle)
 
 @section('content')
     <div id="menuHeader">
-        <h2 id="menuTitle">MD Portfolio</h2>
-        <h6 id="menuSubTitle">Administration Menu</h6>
+        <h2 id="menuTitle">{{ $title }}</h2>
+        <h6 id="menuSubTitle">{{ $subtitle }}</h6>
     </div>
     <!-- <hr /> -->
     
     <!-- Menu items -->
     <!-- Bootstrap-wise, need to use a div if you want the full bar of the items to be clickable -->
     <div class="list-group">
-        <a href="/admin/users" class="list-group-item list-group-item-action">Users</a>
-        <a href="/admin/logos" class="list-group-item list-group-item-action">Logos</a>
-        <a href="/admin/tools" class="list-group-item list-group-item-action">Tools</a>
-        <a href="/admin/projects" class="list-group-item list-group-item-action">Projects</a>
-        <a href="/admin/aboutlinks" class="list-group-item list-group-item-action">About Links</a>
+        @isset($backLink)
+            <a href="{{ $backLink }}" class="list-group-item list-group-item-action menuBackLink">Back</a>
+        @endisset
+        @foreach($menuItems as $item)
+            <a href="{{ $item['url'] }}" class="list-group-item list-group-item-action">{{ $item['name'] }}</a>
+        @endforeach
     </div>
 @endsection
