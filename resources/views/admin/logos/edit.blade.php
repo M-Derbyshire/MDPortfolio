@@ -29,6 +29,9 @@
                     value="{{ $logoName ?? '' }}" 
                     required 
                 />
+                @error('nameError')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             
             <div class="inputContainer">
@@ -45,6 +48,9 @@
                         required
                     @endif
                 />
+                @error('fileError')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             
         </div>
