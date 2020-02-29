@@ -7,7 +7,6 @@
         <h2 id="menuTitle">{{ $title }}</h2>
         <h6 id="menuSubTitle">{{ $subtitle }}</h6>
     </div>
-    <!-- <hr /> -->
     
     <!-- Menu items -->
     <!-- Bootstrap-wise, need to use a div if you want the full bar of the items to be clickable -->
