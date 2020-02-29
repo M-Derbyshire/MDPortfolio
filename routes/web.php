@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('admin.projects.edit');
+    return view('admin.tools.edit');
 });
