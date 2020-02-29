@@ -104,10 +104,5 @@
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
     
-    @if(isset($id))
-        <form id="deleteRecordForm" action="/admin/projects/delete/{{$id}}" method="post">
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-    @endif
+    @include('admin.partials.deleteForm')
 @endsection
