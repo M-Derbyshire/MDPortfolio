@@ -17,3 +17,11 @@
 .menuBackLink:hover {
     background-color: rgb(161, 250, 255) !important;
 }
+
+label {
+    font-weight: bold;
+}
+
+.inputContainer {
+    margin: 2em auto;
+}
