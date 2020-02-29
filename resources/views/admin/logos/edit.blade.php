@@ -14,7 +14,7 @@
         @csrf
         
         @if(isset($id))
-            @method('PUT')
+            @method('PATCH')
         @endif
         
         <div class="form-group">
@@ -57,4 +57,11 @@
         
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
+    
+    @if(isset($id))
+        <form id="deleteRecordForm" action="/admin/logos/delete/{{$id}}" method="post">
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    @endif
 @endsection
