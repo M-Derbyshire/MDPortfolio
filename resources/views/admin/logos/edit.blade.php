@@ -9,7 +9,7 @@
 @section('content')
     
     {{-- Are we editing, or creating? --}}
-    <h1>{{ isset($id) ? "Edit" : "Create" }} Logo:</h1>
+    <h1>{{ $pageTitle }}:</h1>
     
     <form 
         action="{{ isset($id) ? '/admin/logos/edit/'.$id : '/admin/logos/create' }}" 
