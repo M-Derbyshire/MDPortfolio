@@ -33,3 +33,7 @@ label {
 #returnToEntityMenuBtn {
     margin: 1em auto;
 }
+
+.logoUploadPreview {
+    width: 10em;
+}

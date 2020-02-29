@@ -39,15 +39,20 @@
             
             <div class="inputContainer">
                 <label for="logoFileInput">
-                    {{ isset($id) ? "Replace " : "" }}Image File:
+                    {{ isset($fileUrl) ? "Replace " : "Upload " }}Image File:
                 </label>
+                
+                @if(isset($fileUrl))
+                    <br/><img class="logoUploadPreview" src="{{ $fileUrl }}" />
+                @endif
+                
                 <input 
                     type="file" 
                     class="form-control" 
                     accept="image/*" 
                     name="logoFileInput" 
                     id="logoFileInput" 
-                    @if(!isset($fileName))
+                    @if(!isset($fileUrl))
                         required
                     @endif
                 />
