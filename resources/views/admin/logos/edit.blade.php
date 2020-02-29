@@ -8,7 +8,6 @@
 
 @section('content')
     
-    {{-- Are we editing, or creating? --}}
     <h1>{{ $pageTitle }}:</h1>
     
     <form 

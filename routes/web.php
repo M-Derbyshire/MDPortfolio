@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('admin.deleted');
+    return view('admin.projects.edit');
 });
