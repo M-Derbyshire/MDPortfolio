@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Logo')
+@php
+    $pageTitle = ((isset($id)) ? "Edit" : "Create")." Logo";
+@endphp
+
+@section('title', $pageTitle)
 
 @section('content')
     
