@@ -29,3 +29,7 @@ label {
 #deleteRecordForm {
     margin: 0.5em auto;
 }
+
+#returnToEntityMenuBtn {
+    margin: 1em auto;
+}
