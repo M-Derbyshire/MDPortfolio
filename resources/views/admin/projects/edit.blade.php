@@ -32,9 +32,7 @@
                     value="{{ $projectTitle ?? '' }}" 
                     required 
                 />
-                @error('titleError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'titleError'])
             </div>
             
             <div class="inputContainer">
@@ -47,9 +45,7 @@
                     value="{{ $projectSmallDescription ?? '' }}" 
                     required 
                 ></textarea>
-                @error('smallDescriptionError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'smallDescriptionError'])
             </div>
             
             <div class="inputContainer">
@@ -62,9 +58,7 @@
                     value="{{ $projectDescription ?? '' }}" 
                     required 
                 ></textarea>
-                @error('descriptionError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'descriptionError'])
             </div>
             
             @include('admin.partials.logoSelector')
@@ -78,9 +72,7 @@
                     id="projectGithubInput" 
                     value="{{ $projectGithubURL ?? '' }}"  
                 />
-                @error('githubError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'githubError'])
             </div>
             
             <div class="inputContainer">
@@ -94,9 +86,7 @@
                     name="projectZipFileInput" 
                     id="projectZipFileInput" 
                 />
-                @error('zipFileError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'zipFileError'])
             </div>
             
         </div>

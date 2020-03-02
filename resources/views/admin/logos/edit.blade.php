@@ -32,9 +32,7 @@
                     value="{{ $logoName ?? '' }}" 
                     required 
                 />
-                @error('nameError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'nameError'])
             </div>
             
             <div class="inputContainer">
@@ -56,9 +54,7 @@
                         required
                     @endif
                 />
-                @error('fileError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'fileError'])
             </div>
             
         </div>

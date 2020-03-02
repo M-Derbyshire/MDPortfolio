@@ -15,8 +15,6 @@
         <p>There are currently no logos stored in the database.</p>
     @endif
 </div>
-@error('logoError')
-    <div class="alert alert-danger">{{ $message }}</div>
-@enderror
+@include('admin.partials.inputError', ['errorName' => 'logoError'])
 
 <script src="{{ asset('js/logoSelectorScript.js') }}"></script>

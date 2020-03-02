@@ -32,9 +32,7 @@
                     value="{{ $linkName ?? '' }}" 
                     required 
                 />
-                @error('nameError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'nameError'])
             </div>
             
             <div class="inputContainer">
@@ -47,9 +45,7 @@
                     value="{{ $linkText ?? '' }}" 
                     required 
                 />
-                @error('textError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'textError'])
             </div>
             
             <div class="inputContainer">
@@ -62,9 +58,7 @@
                     value="{{ $linkURL ?? '' }}" 
                     required 
                 />
-                @error('urlError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'urlError'])
             </div>
             
             @include('admin.partials.logoSelector')

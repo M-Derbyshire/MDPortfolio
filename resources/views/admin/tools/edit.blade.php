@@ -32,9 +32,7 @@
                     value="{{ $toolName ?? '' }}" 
                     required 
                 />
-                @error('nameError')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @include('admin.partials.inputError', ['errorName' => 'nameError'])
             </div>
             
             @include('admin.partials.logoSelector')
