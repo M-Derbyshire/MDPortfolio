@@ -30,10 +30,38 @@ label {
     margin: 0.5em auto;
 }
 
+/* Used in deleted.blade.php */
 #returnToEntityMenuBtn {
     margin: 1em auto;
 }
 
+/* Used on the logo edit view to see the uploaded image */
 .logoUploadPreview {
     width: 10em;
+}
+
+/* Styling for the image selector */
+#logoSelector {
+    border: 2px solid #37b6cc;
+    background-color: #dddddd;
+    padding: 0.5em;
+    overflow-y: scroll;
+    height: 25em;
+    width: 12em;
+}
+
+#logoSelector img {
+    margin: 0.5em auto;
+    padding: 2px; /* To be replaced by a border on hover-over */
+}
+
+#logoSelector img:hover {
+    padding: 0;
+    border: 2px solid #ff5858;
+    cursor: pointer;
+}
+
+#logoSelector img.selectedLogo {
+    padding: 0;
+    border: 2px solid #37b6cc;
 }

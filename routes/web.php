@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('admin.logos.edit');
+    return view('admin.aboutLinks.edit');
 });
