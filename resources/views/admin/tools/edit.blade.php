@@ -37,7 +37,7 @@
                 @enderror
             </div>
             
-            @yield('admin.logos.selector')
+            @include('admin.partials.logoSelector')
             
         </div>
         

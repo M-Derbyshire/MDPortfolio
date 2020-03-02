@@ -67,7 +67,7 @@
                 @enderror
             </div>
             
-            @yield('admin.logos.selector')
+            @include('admin.partials.logoSelector')
             
             <div class="inputContainer">
                 <label for="projectGithubInput">GitHub URL:</label>
