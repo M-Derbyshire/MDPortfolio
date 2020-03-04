@@ -22,44 +22,47 @@
         
         <div class="form-group">
             
-            <div class="inputContainer">
-                <label for="linkNameInput">Link Name:</label>
-                <input 
+            @include('admin.partials.inputContainer', [
+                'inputName' => 'linkNameInput',
+                'inputLabel' => 'Link Name:',
+                'inputErrorName' => 'nameError',
+                'inputField' => '<input 
                     type="text" 
                     class="form-control" 
                     name="linkNameInput" 
                     id="linkNameInput" 
-                    value="{{ $linkName ?? '' }}" 
+                    value="'.($linkName ?? "").'" 
                     required 
-                />
-                @include('admin.partials.inputError', ['errorName' => 'nameError'])
-            </div>
+                />'
+            ])
             
-            <div class="inputContainer">
-                <label for="linkTextInput">Link Caption:</label>
-                <input 
+            @include('admin.partials.inputContainer', [
+                'inputName' => 'linkTextInput',
+                'inputLabel' => 'Link Caption:',
+                'inputErrorName' => 'textError',
+                'inputField' => '<input 
                     type="text" 
                     class="form-control" 
                     name="linkTextInput" 
                     id="linkTextInput" 
-                    value="{{ $linkText ?? '' }}" 
+                    value="'.($linkText ?? '').'" 
                     required 
-                />
-                @include('admin.partials.inputError', ['errorName' => 'textError'])
-            </div>
+                />'
+            ])
             
-            <div class="inputContainer">
-                <label for="linkUrlInput">Link URL:</label>
-                <input 
+            @include('admin.partials.inputContainer', [
+                'inputName' => 'linkUrlInput',
+                'inputLabel' => 'Link URL:',
+                'inputErrorName' => 'urlError',
+                'inputField' => '<input 
                     type="text" 
                     class="form-control" 
                     name="linkUrlInput" 
                     id="linkUrlInput" 
-                    value="{{ $linkURL ?? '' }}" 
+                    value="'.( $linkURL ?? '' ).'" 
                     required 
-                />
-                @include('admin.partials.inputError', ['errorName' => 'urlError'])
-            </div>
+                />'
+            ])
             
             @include('admin.partials.logoSelector')
             
