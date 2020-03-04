@@ -22,18 +22,20 @@
         
         <div class="form-group">
             
-            <div class="inputContainer">
-                <label for="toolNameInput">Tool Name:</label>
-                <input 
+            @include('admin.partials.inputContainer', [
+                'inputName' => 'toolNameInput',
+                'inputLabel' => 'Tool Name:',
+                'inputErrorName' => 'nameError',
+                'inputField' => '<input 
                     type="text" 
                     class="form-control" 
                     name="toolNameInput" 
                     id="toolNameInput" 
-                    value="{{ $toolName ?? '' }}" 
+                    value="'.( $toolName ?? '' ).'" 
                     required 
-                />
-                @include('admin.partials.inputError', ['errorName' => 'nameError'])
-            </div>
+                />'
+            ])
+            
             
             @include('admin.partials.logoSelector')
             
