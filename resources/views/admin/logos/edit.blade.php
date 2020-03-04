@@ -22,19 +22,21 @@
         
         <div class="form-group">
             
-            <div class="inputContainer">
-                <label for="logoNameInput">Logo Name:</label>
-                <input 
+            @include('admin.partials.inputContainer', [
+                'inputName' => 'logoNameInput',
+                'inputLabel' => 'Logo Name:',
+                'inputErrorName' => 'nameError',
+                'inputField' => '<input 
                     type="text" 
                     class="form-control" 
                     name="logoNameInput" 
                     id="logoNameInput" 
-                    value="{{ $logoName ?? '' }}" 
+                    value="'.($logoName ?? '').'" 
                     required 
-                />
-                @include('admin.partials.inputError', ['errorName' => 'nameError'])
-            </div>
+                />'
+            ])
             
+            {{-- Not using the inputContainer partial here, due to the logoUploadPreview img --}}
             <div class="inputContainer">
                 <label for="logoFileInput">
                     {{ isset($fileUrl) ? "Replace " : "Upload " }}Image File:
