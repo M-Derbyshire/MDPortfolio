@@ -22,72 +22,77 @@
         
         <div class="form-group">
             
-            <div class="inputContainer">
-                <label for="projectTitleInput">Project Title:</label>
-                <input 
+            @include('admin.partials.inputContainer', [
+                'inputName' => 'projectTitleInput',
+                'inputLabel' => 'Project Title:',
+                'inputErrorName' => 'titleError',
+                'inputField' => '<input 
                     type="text" 
                     class="form-control" 
                     name="projectTitleInput" 
                     id="projectTitleInput" 
-                    value="{{ $projectTitle ?? '' }}" 
+                    value="'.($projectTitle ?? '').'" 
                     required 
-                />
-                @include('admin.partials.inputError', ['errorName' => 'titleError'])
-            </div>
+                />'
+            ])
             
-            <div class="inputContainer">
-                <label for="projectSmallDescriptionInput">Small Description:</label>
-                <textarea 
+            @include('admin.partials.inputContainer', [
+                'inputName' => 'projectSmallDescriptionInput',
+                'inputLabel' => 'Small Description:',
+                'inputErrorName' => 'smallDescriptionError',
+                'inputField' => '<textarea 
                     rows="2"
                     class="form-control" 
                     name="projectSmallDescriptionInput" 
                     id="projectSmallDescriptionInput" 
-                    value="{{ $projectSmallDescription ?? '' }}" 
+                    value="'.( $projectSmallDescription ?? '' ).'" 
                     required 
-                ></textarea>
-                @include('admin.partials.inputError', ['errorName' => 'smallDescriptionError'])
-            </div>
+                ></textarea>'
+            ])
             
-            <div class="inputContainer">
-                <label for="projectDescriptionInput">Full Description:</label>
-                <textarea 
+            @include('admin.partials.inputContainer', [
+                'inputName' => 'projectDescriptionInput',
+                'inputLabel' => 'Full Description:',
+                'inputErrorName' => 'descriptionError',
+                'inputField' => '<textarea 
                     rows="8"
                     class="form-control" 
                     name="projectDescriptionInput" 
                     id="projectDescriptionInput" 
-                    value="{{ $projectDescription ?? '' }}" 
+                    value="'.( $projectDescription ?? '' ).'" 
                     required 
-                ></textarea>
-                @include('admin.partials.inputError', ['errorName' => 'descriptionError'])
-            </div>
+                ></textarea>'
+            ])
+            
             
             @include('admin.partials.logoSelector')
             
-            <div class="inputContainer">
-                <label for="projectGithubInput">GitHub URL:</label>
-                <input 
+            
+            @include('admin.partials.inputContainer', [
+                'inputName' => 'projectGithubInput',
+                'inputLabel' => 'GitHub URL:',
+                'inputErrorName' => 'githubError',
+                'inputField' => '<input 
                     type="text" 
                     class="form-control" 
                     name="projectGithubInput" 
                     id="projectGithubInput" 
-                    value="{{ $projectGithubURL ?? '' }}"  
-                />
-                @include('admin.partials.inputError', ['errorName' => 'githubError'])
-            </div>
+                    value="'.( $projectGithubURL ?? '' ).'"  
+                />'
+            ])
             
-            <div class="inputContainer">
-                <label for="projectZipFileInput">
-                    {{ isset($zipFileUrl) ? "Replace" : "Upload" }} Zip File:
-                </label>
-                <input 
+            @include('admin.partials.inputContainer', [
+                'inputName' => 'projectZipFileInput',
+                'inputLabel' => (isset($zipFileUrl) ? 'Replace' : 'Upload').' Zip File:',
+                'inputErrorName' => 'zipFileError',
+                'inputField' => '<input 
                     type="file" 
                     class="form-control" 
                     accept=".zip" 
                     name="projectZipFileInput" 
                     id="projectZipFileInput" 
-                />
-                @include('admin.partials.inputError', ['errorName' => 'zipFileError'])
-            </div>
+                />'
+            ])
             
         </div>
         
