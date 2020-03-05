@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('admin.auth.login');
+    return view('admin.users.edit');
 });
