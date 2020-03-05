@@ -53,33 +53,37 @@
                 />'
             ])
             
-            @include('admin.partials.inputContainer', [
-                'inputName' => 'passwordInput',
-                'inputLabel' => "Password:",
-                'inputErrorName' => 'passwordError',
-                'inputField' => '<input 
-                    type="password" 
-                    class="form-control" 
-                    name="passwordInput" 
-                    id="passwordInput" 
-                    value="" 
-                    required 
-                />'
-            ])
             
-            @include('admin.partials.inputContainer', [
-                'inputName' => 'passwordInput-confirm',
-                'inputLabel' => "Confirm Password:",
-                'inputErrorName' => 'passwordError',
-                'inputField' => '<input 
-                    type="password" 
-                    class="form-control" 
-                    name="passwordInput-confirm" 
-                    id="passwordInput-confirm" 
-                    value="" 
-                    required 
-                />'
-            ])
+            {{-- User's can change their own password on a seperate form, elsewhere --}}
+            @if(!isset($id))
+                @include('admin.partials.inputContainer', [
+                    'inputName' => 'passwordInput',
+                    'inputLabel' => "Password:",
+                    'inputErrorName' => 'passwordError',
+                    'inputField' => '<input 
+                        type="password" 
+                        class="form-control" 
+                        name="passwordInput" 
+                        id="passwordInput" 
+                        value="" 
+                        required 
+                    />'
+                ])
+                
+                @include('admin.partials.inputContainer', [
+                    'inputName' => 'passwordInput-confirm',
+                    'inputLabel' => "Confirm Password:",
+                    'inputErrorName' => 'passwordError',
+                    'inputField' => '<input 
+                        type="password" 
+                        class="form-control" 
+                        name="passwordInput-confirm" 
+                        id="passwordInput-confirm" 
+                        value="" 
+                        required 
+                    />'
+                ])
+            @endif
             
         </div>
         
