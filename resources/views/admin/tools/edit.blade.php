@@ -10,6 +10,8 @@
     
     <h1>{{ $pageTitle }}:</h1>
     
+    @include('admin.partials.backToMenuBtn')
+    
     <form 
         action="{{ isset($id) ? '/admin/tools/edit/'.$id : '/admin/tools/create' }}" 
         method="post" 
