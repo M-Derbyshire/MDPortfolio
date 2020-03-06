@@ -46,7 +46,7 @@
             
         </div>
         
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" id="loginButton" class="btn btn-primary btn-lg">Login</button>
     </form>
 
 @endsection
