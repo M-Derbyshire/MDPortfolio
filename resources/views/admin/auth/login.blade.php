@@ -21,12 +21,12 @@
             @include('admin.partials.inputContainer', [
                 'inputName' => 'email',
                 'inputLabel' => 'Email Address:',
-                'inputErrorName' => 'emailError',
                 'inputField' => '<input 
                     type="email" 
                     class="form-control" 
                     name="email" 
                     id="emailInput" 
+                    value="'.old('email').'" 
                     required 
                 />'
             ])
@@ -34,7 +34,6 @@
             @include('admin.partials.inputContainer', [
                 'inputName' => 'password',
                 'inputLabel' => 'Password:',
-                'inputErrorName' => 'passwordError',
                 'inputField' => '<input 
                     type="password" 
                     class="form-control" 
@@ -43,6 +42,8 @@
                     required 
                 />'
             ])
+            
+            @include('admin.partials.inputError', ['errorName' => 'loginError'])
             
         </div>
         
