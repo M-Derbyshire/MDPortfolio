@@ -27,7 +27,7 @@ class MenuController extends Controller
         return view('admin.menu', [
             'pageTitle' => 'Portfolio CMS Menu',
             'title' => 'Portfolio CMS',
-            'subtitle' => 'Content Management System',
+            'subtitle' => 'Welcome, '.auth()->user()->name,
             'menuItems' => $menuItems,
         ]);
     }
