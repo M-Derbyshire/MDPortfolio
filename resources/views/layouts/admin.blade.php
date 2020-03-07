@@ -20,7 +20,10 @@
             <div class="row">
                 <div class="col-12">
                     @if(Auth::check())
-                        <a href="/admin/logout" id="logoutBtn" class="btn btn-primary btn-sm">Log Out</a>
+                        <form method="POST" action="/admin/logout" id="logoutBtnForm">
+                            @csrf
+                            <input type="submit" class="btn btn-primary btn-sm" value="Log Out" />
+                        </form>
                     @endif
                 </div>
             </div>

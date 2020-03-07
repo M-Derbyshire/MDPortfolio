@@ -50,4 +50,8 @@ class LoginController extends Controller
         
         return redirect()->back()->withErrors(['loginError' => $loginError])->withInput($request->only('email'));
     }
+    
+    protected function loggedOut(Request $request) {
+        return redirect('/admin/login');
+    }
 }
