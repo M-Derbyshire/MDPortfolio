@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Exception;
 use Hash;
 use Auth;
+use App\Providers\RouteServiceProvider;
 
 class UserController extends Controller
 {
@@ -76,6 +77,7 @@ class UserController extends Controller
         
         $viewData = [
             'menuURL' => $this->menuURL,
+            'deleteURL' => '/admin/users/delete',
             'id' => Auth::id(),
             'email' => Auth::user()->email,
             'name' => Auth::user()->name,
@@ -140,8 +142,13 @@ class UserController extends Controller
     
     
     
-    public function delete()
+    public function destroy()
     {
+        $user = Auth::user();
+        Auth::logout();
         
+        $user->delete();
+        
+        return redirect(RouteServiceProvider::ADMINHOME);
     }
 }
