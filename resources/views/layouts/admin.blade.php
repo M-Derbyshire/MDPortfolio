@@ -18,6 +18,11 @@
         
         <div class="container-fluid">
             <div class="row">
+                <div class="col-12">
+                    <a href="/admin/logout" id="logoutBtn" class="btn btn-primary btn-sm">Log Out</a>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6 offset-md-3 col-10 offset-2" id="contentContainer">
                     @yield("content")
                 </div>
