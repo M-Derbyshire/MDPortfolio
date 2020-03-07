@@ -2,12 +2,5 @@
     <label for="{{ $inputName }}">{{ $inputLabel }}</label>
     {!! $inputField !!}
     
-    @php
-        if(!isset($inputErrorName))
-        {
-            $inputErrorName = "";
-        }
-    @endphp
-    
     @include('admin.partials.inputError', ['errorName' => $inputName])
 </div>
