@@ -19,7 +19,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <a href="/admin/logout" id="logoutBtn" class="btn btn-primary btn-sm">Log Out</a>
+                    @if(Auth::check())
+                        <a href="/admin/logout" id="logoutBtn" class="btn btn-primary btn-sm">Log Out</a>
+                    @endif
                 </div>
             </div>
             <div class="row">
