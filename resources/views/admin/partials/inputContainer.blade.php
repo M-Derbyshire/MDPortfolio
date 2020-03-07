@@ -9,5 +9,5 @@
         }
     @endphp
     
-    @include('admin.partials.inputError', ['errorName' => $inputErrorName])
+    @include('admin.partials.inputError', ['errorName' => $inputName])
 </div>
