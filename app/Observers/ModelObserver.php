@@ -8,6 +8,6 @@ class ModelObserver
 {
     public function saving($model)
     {
-        $model->lastChangedBy = auth()->user()->id ?? 3;
+        $model->lastChangedBy = auth()->user()->id ?? 0;
     }
 }
