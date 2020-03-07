@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
 use Hash;
+use Auth;
 
 class UserController extends Controller
 {
@@ -17,9 +18,11 @@ class UserController extends Controller
     
     public function validator($request)
     {
+        $emailRules = 'required|email'.(($request->isMethod('POST')) ? '|unique:users' : '');
+        
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => $emailRules,
         ]);
     }
     
@@ -56,15 +59,52 @@ class UserController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        return redirect()->route('afterUserStored');
+        return redirect()->route('afterUserStored'); //User's can only edit their own accounts
     }
     
     public function afterStored()
     {
+        //User's can only edit their own accounts
         return view('admin.users.stored', ['menuURL' => $this->menuURL]);
     }
     
     
+    
+    public function edit()
+    {
+        //User's can only edit their own accounts
+        
+        $viewData = [
+            'menuURL' => $this->menuURL,
+            'id' => Auth::id(),
+            'email' => Auth::user()->email,
+            'name' => Auth::user()->name,
+        ];
+        
+        return view('admin.users.edit', $viewData);
+    }
+    
+    public function update(Request $request)
+    {
+        $this->validator($request);
+        
+        try
+        {
+            $user = Auth::user();
+            
+            $user->email = $request->email;
+            $user->name = $request->name;
+            $user->save();
+        }
+        catch(Exception $e)
+        {
+            $errorText = "Unexpected error has occured: ".$e->getMessage();
+            return redirect()->back()->with('customErrors', [$errorText])->withInput();
+        }
+        
+        $savedMessage = "User account has been updated"; 
+        return redirect()->back()->with('customMessages', [$savedMessage]);
+    }
     
     
     

@@ -24,3 +24,6 @@ Route::post('/admin/logout', 'Auth\LoginController@logout');
 Route::get('/admin/users/create', 'UserController@create');
 Route::post('/admin/users/store', 'UserController@store');
 Route::get('/admin/users/store', 'UserController@afterStored')->name('afterUserStored');
+//A user can only edit their own account
+Route::get('/admin/users/edit', 'UserController@edit');
+Route::patch('/admin/users/update', 'UserController@update');
