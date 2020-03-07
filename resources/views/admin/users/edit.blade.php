@@ -14,9 +14,10 @@
     <h1>{{ $pageTitle }}:</h1>
     
     @include('admin.partials.backToMenuBtn')
+    @include('admin.partials.customErrors')
     
     <form 
-        action="{{ isset($id) ? '/admin/users/edit/'.$id : '/admin/users/create' }}" 
+        action="{{ isset($id) ? '/admin/users/edit/'.$id : '/admin/users/store' }}" 
         method="post" 
     >
         @csrf
@@ -28,29 +29,27 @@
         <div class="form-group">
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'emailInput',
+                'inputName' => 'email',
                 'inputLabel' => 'Email Address:',
-                'inputErrorName' => 'emailError',
                 'inputField' => '<input 
-                    type="email" 
+                    type="text" 
                     class="form-control" 
-                    name="emailInput" 
+                    name="email" 
                     id="emailInput" 
-                    value="'.($email ?? "").'" 
+                    value="'.($email ?? (old('email'))).'" 
                     required 
                 />'
             ])
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'nameInput',
+                'inputName' => 'name',
                 'inputLabel' => "User's Name:",
-                'inputErrorName' => 'nameError',
                 'inputField' => '<input 
                     type="text" 
                     class="form-control" 
-                    name="nameInput" 
+                    name="name" 
                     id="nameInput" 
-                    value="'.($name ?? "").'" 
+                    value="'.($name ?? (old('name'))).'" 
                     required 
                 />'
             ])
@@ -59,13 +58,12 @@
             {{-- User's can change their own password on a seperate form, elsewhere --}}
             @if(!isset($id))
                 @include('admin.partials.inputContainer', [
-                    'inputName' => 'passwordInput',
+                    'inputName' => 'password',
                     'inputLabel' => "Password:",
-                    'inputErrorName' => 'passwordError',
                     'inputField' => '<input 
                         type="password" 
                         class="form-control" 
-                        name="passwordInput" 
+                        name="password" 
                         id="passwordInput" 
                         value="" 
                         required 
@@ -73,13 +71,12 @@
                 ])
                 
                 @include('admin.partials.inputContainer', [
-                    'inputName' => 'passwordInput-confirm',
+                    'inputName' => 'password-confirm',
                     'inputLabel' => "Confirm Password:",
-                    'inputErrorName' => 'passwordError',
                     'inputField' => '<input 
                         type="password" 
                         class="form-control" 
-                        name="passwordInput-confirm" 
+                        name="password-confirm" 
                         id="passwordInput-confirm" 
                         value="" 
                         required 

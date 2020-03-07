@@ -11,6 +11,7 @@
     <h1>{{ $pageTitle }}:</h1>
     
     @include('admin.partials.backToMenuBtn')
+    @include('admin.partials.customErrors')
     
     <form 
         action="{{ isset($id) ? '/admin/logos/edit/'.$id : '/admin/logos/create' }}" 

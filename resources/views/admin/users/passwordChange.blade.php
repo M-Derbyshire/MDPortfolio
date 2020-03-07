@@ -13,6 +13,7 @@
     <h1>{{ $pageTitle }}:</h1>
     
     @include('admin.partials.backToMenuBtn')
+    @include('admin.partials.customErrors')
     
     <form 
         action="/admin/users/changepassword/{{ $id }}" 
