@@ -71,13 +71,13 @@
                 ])
                 
                 @include('admin.partials.inputContainer', [
-                    'inputName' => 'password-confirm',
+                    'inputName' => 'password_confirmation',
                     'inputLabel' => "Confirm Password:",
                     'inputField' => '<input 
                         type="password" 
                         class="form-control" 
-                        name="password-confirm" 
-                        id="passwordInput-confirm" 
+                        name="password_confirmation" 
+                        id="passwordInput_confirmation" 
                         value="" 
                         required 
                     />'

@@ -20,3 +20,7 @@ Route::get('/admin', 'MenuController@index');
 Route::get('/admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/admin/login', 'Auth\LoginController@login');
 Route::post('/admin/logout', 'Auth\LoginController@logout');
+
+Route::get('/admin/users/create', 'UserController@create');
+Route::post('/admin/users/store', 'UserController@store');
+Route::get('/admin/users/store', 'UserController@afterStored')->name('afterUserStored');
