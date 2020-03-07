@@ -27,3 +27,5 @@ Route::get('/admin/users/store', 'UserController@afterStored')->name('afterUserS
 //A user can only edit their own account
 Route::get('/admin/users/edit', 'UserController@edit');
 Route::patch('/admin/users/update', 'UserController@update');
+Route::get('/admin/users/updatepassword', 'UserController@passwordEdit');
+Route::patch('/admin/users/updatepassword', 'UserController@passwordUpdate');

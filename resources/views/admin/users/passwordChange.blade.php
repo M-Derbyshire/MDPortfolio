@@ -1,9 +1,7 @@
 @extends('layouts.admin')
 
 @php
-    $pageTitle = 'Change my Password';
-    $menuURL = "test/menu";
-    $id = 3;
+    $pageTitle = 'Change My Password';
 @endphp
 
 @section('title', $pageTitle)
@@ -16,7 +14,7 @@
     @include('admin.partials.customMessages')
     
     <form 
-        action="/admin/users/changepassword/{{ $id }}" 
+        action="/admin/users/updatepassword" 
         method="post" 
     >
         @csrf
@@ -26,13 +24,12 @@
         <div class="form-group">
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'currentPasswordInput',
+                'inputName' => 'currentPassword',
                 'inputLabel' => "Current Password:",
-                'inputErrorName' => 'currentPasswordError',
                 'inputField' => '<input 
                     type="password" 
                     class="form-control" 
-                    name="currentPasswordInput" 
+                    name="currentPassword" 
                     id="currentPasswordInput" 
                     value="" 
                     required 
@@ -40,13 +37,12 @@
             ])
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'newPasswordInput',
+                'inputName' => 'newPassword',
                 'inputLabel' => "New Password:",
-                'inputErrorName' => 'newPasswordError',
                 'inputField' => '<input 
                     type="password" 
                     class="form-control" 
-                    name="newPasswordInput" 
+                    name="newPassword" 
                     id="newPasswordInput" 
                     value="" 
                     required 
@@ -54,14 +50,13 @@
             ])
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'newPasswordInput-confirm',
+                'inputName' => 'newPassword_confirmation',
                 'inputLabel' => "Confirm New Password:",
-                'inputErrorName' => 'newPasswordError',
                 'inputField' => '<input 
                     type="password" 
                     class="form-control" 
-                    name="newPasswordInput-confirm" 
-                    id="newPasswordInput-confirm" 
+                    name="newPassword_confirmation" 
+                    id="newPasswordInput_confirmation" 
                     value="" 
                     required 
                 />'

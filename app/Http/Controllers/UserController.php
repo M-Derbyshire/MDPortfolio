@@ -26,10 +26,10 @@ class UserController extends Controller
         ]);
     }
     
-    public function passwordValidator($request)
+    public function passwordValidator($request, $passwordField = 'password')
     {
         $request->validate([
-            'password' => 'required|min:6|confirmed',
+            $passwordField => 'required|min:6|confirmed',
         ]);
     }
     
@@ -103,6 +103,38 @@ class UserController extends Controller
         }
         
         $savedMessage = "User account has been updated"; 
+        return redirect()->back()->with('customMessages', [$savedMessage]);
+    }
+    
+    public function passwordEdit()
+    {
+        return view('admin.users.passwordChange', ['menuURL' => $this->menuURL]);
+    }
+    
+    public function passwordUpdate(Request $request)
+    {
+        $this->passwordValidator($request, 'newPassword');
+        
+        try
+        {
+            $user = Auth::user();
+            
+            if(!Hash::check($request->currentPassword, $user->password))
+            {
+                $errorText = "The current password you provided is incorrect";
+                return redirect()->back()->withErrors(['currentPassword' => $errorText]);
+            }
+            
+            $user->password = Hash::make($request->newPassword);
+            $user->save();
+        }
+        catch(Exception $e)
+        {
+            $errorText = "Unexpected error has occured: ".$e->getMessage();
+            return redirect()->back()->with('customErrors', [$errorText])->withInput();
+        }
+        
+        $savedMessage = "Password has been updated"; 
         return redirect()->back()->with('customMessages', [$savedMessage]);
     }
     
