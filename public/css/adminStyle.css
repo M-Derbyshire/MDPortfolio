@@ -78,10 +78,11 @@ label {
     margin: 1em 1em 0 1em;
 }
 
-#customErrorList {
-    margin: 0.5em;
+
+.customMessageList {
+    margin: 1em 0.5em;
 }
 
-#customErrorList li {
+.customMessageList li {
     margin: 0.5em;
 }

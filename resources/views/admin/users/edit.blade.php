@@ -14,10 +14,10 @@
     <h1>{{ $pageTitle }}:</h1>
     
     @include('admin.partials.backToMenuBtn')
-    @include('admin.partials.customErrors')
+    @include('admin.partials.customMessages')
     
     <form 
-        action="{{ isset($id) ? '/admin/users/edit/'.$id : '/admin/users/store' }}" 
+        action="{{ isset($id) ? '/admin/users/update' : '/admin/users/store' }}" 
         method="post" 
     >
         @csrf
