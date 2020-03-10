@@ -30,3 +30,5 @@ Route::patch('/admin/users/update', 'UserController@update');
 Route::get('/admin/users/updatepassword', 'UserController@passwordEdit');
 Route::patch('/admin/users/updatepassword', 'UserController@passwordUpdate');
 Route::delete('admin/users/delete', 'UserController@destroy');
+
+Route::resource('logos', 'LogoController');
