@@ -14,8 +14,9 @@
     @include('admin.partials.customMessages')
     
     <form 
-        action="{{ isset($id) ? '/admin/logos/edit/'.$id : '/admin/logos/create' }}" 
+        action="{{ isset($id) ? '/admin/logos/'.$id : '/admin/logos' }}" 
         method="post" 
+        enctype="multipart/form-data" {{-- Required to make the file upload work correctly --}}
     >
         @csrf
         
@@ -26,40 +27,39 @@
         <div class="form-group">
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'logoNameInput',
+                'inputName' => 'name',
                 'inputLabel' => 'Logo Name:',
-                'inputErrorName' => 'nameError',
                 'inputField' => '<input 
                     type="text" 
                     class="form-control" 
-                    name="logoNameInput" 
-                    id="logoNameInput" 
-                    value="'.($logoName ?? '').'" 
+                    name="name" 
+                    id="nameInput" 
+                    value="'.($logoName ?? (old('name'))).'" 
                     required 
                 />'
             ])
             
             {{-- Not using the inputContainer partial here, due to the logoUploadPreview img --}}
             <div class="inputContainer">
-                <label for="logoFileInput">
-                    {{ isset($fileUrl) ? "Replace " : "Upload " }}Image File:
+                <label for="file">
+                    {{ isset($fileUrl) ? "Replace" : "Upload" }} Image File:
                 </label>
                 
                 @if(isset($fileUrl))
-                    <br/><img class="logoUploadPreview" src="{{ $fileUrl }}" />
+                    <br/><img class="logoUploadPreview" src="{{ url($fileUrl) }}" />
                 @endif
                 
                 <input 
                     type="file" 
                     class="form-control" 
                     accept="image/*" 
-                    name="logoFileInput" 
-                    id="logoFileInput" 
+                    name="file" 
+                    id="fileInput" 
                     @if(!isset($fileUrl))
                         required
                     @endif
                 />
-                @include('admin.partials.inputError', ['errorName' => 'fileError'])
+                @include('admin.partials.inputError', ['errorName' => 'file'])
             </div>
             
         </div>

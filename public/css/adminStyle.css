@@ -37,7 +37,8 @@ label {
 
 /* Used on the logo edit view to see the uploaded image */
 .logoUploadPreview {
-    width: 10em;
+    width: 8em;
+    margin-bottom: 0.5em;
 }
 
 

@@ -3,13 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Exception;
 
 class LogoController extends Controller
 {
     
+    protected $menuURL = "/admin/logos/";
+    protected $logoDirectory = "uploads/logos";
+    
     public function __construct()
     {
         $this->middleware('auth');
+    }
+    
+    public function validator($request)
+    {
+        $fileRules = 'image'.(($request->isMethod('POST')) ? '|required' : '');
+        
+        $request->validate([
+            'name' => 'required',
+            'file' => 'image'
+        ]);
+    }
+    
+    public function deleteLogoFile($logo, $directory)
+    {
+        if(isset($logo->url))
+        {
+            unlink(public_path($directory.'/'.$logo->url));
+        }
+    }
+    
+    public function deleteLogo($logo, $directory)
+    {
+        $this->deleteLogoFile($logo, $directory);
+        
+        if(method_exists($logo, 'delete'))
+        {
+            $logo->delete();
+        }
+    }
+    
+    public function generateLogoUrl($logo, $imageFile)
+    {
+        return \str_replace(' ', '_', $imageFile->getClientOriginalName().'_'.$logo->id.'.'.$imageFile->getClientOriginalExtension());
     }
     
     
@@ -20,7 +57,27 @@ class LogoController extends Controller
      */
     public function index()
     {
-        //
+        $logos = \App\Logo::all();
+        $menuItems = [];
+        
+        foreach($logos as $logo)
+        {
+            array_push($menuItems, [ 'name' => $logo->name, 'url' => '/admin/logos/'.$logo->id.'/edit' ]);
+        }
+        
+        $constantItems = [
+            [ 'name' => 'Create Logo', 'url' => '/admin/logos/create' ]
+        ];
+        
+        $allMenuItems = array_merge($constantItems, $menuItems);
+        
+        return view('admin.menu', [
+            'pageTitle' => 'Logos',
+            'title' => 'Logos',
+            'subtitle' => 'Logos to be used by other elements on the site',
+            'backLink' => '/admin',
+            'menuItems' => $allMenuItems,
+        ]);
     }
 
     /**
@@ -30,7 +87,7 @@ class LogoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.logos.edit', ['menuURL' => $this->menuURL]);
     }
 
     /**
@@ -41,7 +98,35 @@ class LogoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validator($request);
+        
+        try
+        {
+            //We want to use the id in the logo file name,
+            // so will add the url after the create
+            $logo = \App\Logo::create([
+                'name' => $request->name,
+                'url' => ''
+            ]);
+            
+            $imageFile = $request->file;
+            $logo->url = $this->generateLogoUrl($logo, $imageFile);
+            $imageFile->move($this->logoDirectory.'/', $logo->url);
+            $logo->save();
+        }
+        catch(Exception $e)
+        {
+            // Need to delete the new Logo, and then return the error
+            if(isset($logo))
+            {
+                $this->deleteLogo($logo, $this->logoDirectory);
+            }
+            
+            $errorText = "Unexpected error has occured: ".$e->getMessage();
+            return redirect()->back()->with('customErrors', [$errorText])->withInput();
+        }
+        
+        return redirect('/admin/logos/'.$logo->id.'/edit');
     }
 
     /**
@@ -52,7 +137,7 @@ class LogoController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect('/admin/logos/'.$id.'/edit');
     }
 
     /**
@@ -63,7 +148,22 @@ class LogoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $logo = \App\Logo::find($id);
+        
+        if(is_null($logo))
+        {
+            return redirect()->back();
+        }
+        
+        $viewData = [
+            'menuURL' => $this->menuURL,
+            'deleteURL' => '/admin/logos/'.$logo->id,
+            'id' => $logo->id,
+            'logoName' => $logo->name,
+            'fileUrl' => $this->logoDirectory.'/'.$logo->url,
+        ];
+        
+        return view('admin.logos.edit', $viewData);
     }
 
     /**
@@ -75,7 +175,38 @@ class LogoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validator($request);
+        
+        try
+        {
+            $logo = \App\Logo::find($id);
+            
+            if(is_null($logo))
+            {
+                return redirect()->back();
+            }
+            
+            
+            if(isset($request->file))
+            {
+                $this->deleteLogoFile($logo, $this->logoDirectory);
+                
+                $imageFile = $request->file;
+                
+                $logo->url = $this->generateLogoUrl($logo, $imageFile);
+                $imageFile->move($this->logoDirectory.'/', $logo->url);
+            }
+            
+            $logo->name = $request->name;
+            $logo->save();
+        }
+        catch(Exception $e)
+        {
+            $errorText = "Unexpected error has occured: ".$e->getMessage();
+            return redirect()->back()->with('customErrors', [$errorText])->withInput();
+        }
+        
+        return redirect('/admin/logos/'.$logo->id.'/edit');
     }
 
     /**
@@ -86,6 +217,17 @@ class LogoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $logo = \App\Logo::find($id);
+        
+        if(isset($logo))
+        {
+            $this->deleteLogo($logo, $this->logoDirectory);
+        }
+        else
+        {
+            return redirect()->back();
+        }
+        
+        return redirect($this->menuURL);
     }
 }
