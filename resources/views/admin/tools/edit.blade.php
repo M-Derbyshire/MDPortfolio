@@ -14,7 +14,7 @@
     @include('admin.partials.customMessages')
     
     <form 
-        action="{{ isset($id) ? '/admin/tools/edit/'.$id : '/admin/tools/create' }}" 
+        action="{{ isset($id) ? '/admin/tools/'.$id : '/admin/tools' }}" 
         method="post" 
     >
         @csrf
@@ -26,15 +26,14 @@
         <div class="form-group">
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'toolNameInput',
+                'inputName' => 'name',
                 'inputLabel' => 'Tool Name:',
-                'inputErrorName' => 'nameError',
                 'inputField' => '<input 
                     type="text" 
                     class="form-control" 
-                    name="toolNameInput" 
-                    id="toolNameInput" 
-                    value="'.( $toolName ?? '' ).'" 
+                    name="name" 
+                    id="nameInput" 
+                    value="'.($toolName ?? (old('name'))).'" 
                     required 
                 />'
             ])

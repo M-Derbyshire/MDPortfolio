@@ -33,3 +33,4 @@ Route::delete('admin/users/delete', 'UserController@destroy');
 
 Route::resource('/admin/logos', 'LogoController');
 Route::resource('/admin/aboutlinks', 'AboutLinkController');
+Route::resource('/admin/tools', 'ToolController');
