@@ -118,6 +118,11 @@ class AboutLinkController extends Controller
         $link = \App\AboutLink::find($id);
         $logos = $this->getLogoInfo();
         
+        if(is_null($link))
+        {
+            return $this->recordNotFoundRedirect('/admin/aboutlinks/create');
+        }
+        
         return view('admin.aboutlinks.edit', [
             'menuURL' => $this->menuURL, 
             'deleteURL' => '/admin/aboutlinks/'.$link->id,

@@ -111,6 +111,11 @@ class ToolController extends Controller
         $tool = \App\Tool::find($id);
         $logos = $this->getLogoInfo();
         
+        if(is_null($tool))
+        {
+            return $this->recordNotFoundRedirect('/admin/tools/create');
+        }
+        
         return view('admin.tools.edit', [
             'menuURL' => $this->menuURL, 
             'deleteURL' => '/admin/tools/'.$tool->id,

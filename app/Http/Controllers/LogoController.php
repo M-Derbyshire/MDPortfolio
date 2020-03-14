@@ -152,7 +152,7 @@ class LogoController extends Controller
         
         if(is_null($logo))
         {
-            return redirect()->back();
+            return $this->recordNotFoundRedirect('/admin/logos/create');
         }
         
         $viewData = [

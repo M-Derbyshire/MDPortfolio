@@ -15,4 +15,10 @@ class Controller extends BaseController
     {
         return \App\Logo::all('id', 'name', 'url');
     }
+    
+    public function recordNotFoundRedirect($backUrl)
+    {
+        $errorText = "The requested record was not found";
+        return redirect($backUrl)->with('customErrors', [$errorText])->withInput();;
+    }
 }
