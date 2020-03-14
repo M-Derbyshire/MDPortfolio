@@ -2,9 +2,9 @@
 onLogoClick = (id) => {
     selectedLogoField = document.getElementById('selectedLogoID');
     
-    if(selectedLogoField.value !== "")
+    currentlySelectedLogo = document.getElementById('logoID:' + selectedLogoField.value);
+    if(typeof(currentlySelectedLogo) != 'undefined' && currentlySelectedLogo != null)
     {
-        currentlySelectedLogo = document.getElementById('logoID:' + selectedLogoField.value);
         currentlySelectedLogo.classList.remove('selectedLogo');
     }
     

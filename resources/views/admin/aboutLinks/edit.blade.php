@@ -14,7 +14,7 @@
     @include('admin.partials.customMessages')
     
     <form 
-        action="{{ isset($id) ? '/admin/aboutlinks/edit/'.$id : '/admin/aboutlinks/create' }}" 
+        action="{{ isset($id) ? '/admin/aboutlinks/'.$id : '/admin/aboutlinks' }}" 
         method="post" 
     >
         @csrf
@@ -26,43 +26,40 @@
         <div class="form-group">
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'linkNameInput',
+                'inputName' => 'name',
                 'inputLabel' => 'Link Name:',
-                'inputErrorName' => 'nameError',
                 'inputField' => '<input 
                     type="text" 
                     class="form-control" 
-                    name="linkNameInput" 
-                    id="linkNameInput" 
-                    value="'.($linkName ?? "").'" 
+                    name="name" 
+                    id="nameInput" 
+                    value="'.($linkName ?? (old('name'))).'" 
                     required 
                 />'
             ])
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'linkTextInput',
+                'inputName' => 'text',
                 'inputLabel' => 'Link Caption:',
-                'inputErrorName' => 'textError',
                 'inputField' => '<input 
                     type="text" 
                     class="form-control" 
-                    name="linkTextInput" 
-                    id="linkTextInput" 
-                    value="'.($linkText ?? '').'" 
+                    name="text" 
+                    id="textInput" 
+                    value="'.($linkText ?? (old('text'))).'" 
                     required 
                 />'
             ])
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'linkUrlInput',
+                'inputName' => 'url',
                 'inputLabel' => 'Link URL:',
-                'inputErrorName' => 'urlError',
                 'inputField' => '<input 
                     type="text" 
                     class="form-control" 
-                    name="linkUrlInput" 
-                    id="linkUrlInput" 
-                    value="'.( $linkURL ?? '' ).'" 
+                    name="url" 
+                    id="urlInput" 
+                    value="'.($linkUrl ?? (old('url'))).'" 
                     required 
                 />'
             ])
