@@ -221,7 +221,15 @@ class LogoController extends Controller
         
         if(isset($logo))
         {
-            $this->deleteLogo($logo, $this->logoDirectory);
+            if(!$logo->inUse())
+            {
+                $this->deleteLogo($logo, $this->logoDirectory);
+            }
+            else
+            {
+                $errorText = "Unable to delete logo, as it is currently in use";
+                return redirect()->back()->with('customErrors', [$errorText])->withInput();
+            }
         }
         else
         {

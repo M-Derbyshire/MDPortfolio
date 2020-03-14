@@ -43,4 +43,19 @@ class Logo extends Model
     {
         return $this->hasOne(User::class, 'lastChangedBy');
     }
+    
+    //Is this logo currently being used?
+    function inUse()
+    {
+        if(
+            $this->aboutLinks()->count() > 0 ||
+            $this->projects()->count() > 0 ||
+            $this->tools()->count() > 0
+        )
+        {
+            return true;
+        }
+        
+        return false;
+    }
 }
