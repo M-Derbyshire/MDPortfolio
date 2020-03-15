@@ -38,22 +38,4 @@ class Controller extends BaseController
     {
         return \str_replace(' ', '_', $imageFile->getClientOriginalName().'_'.$fileId.'.'.$imageFile->getClientOriginalExtension());
     }
-    
-    
-    
-    
-    public function deleteLogo($logo, $directory)
-    {
-        $this->deleteUploadedFile($logo->url, $directory);
-        
-        if(method_exists($logo, 'delete'))
-        {
-            $logo->delete();
-        }
-    }
-    
-    public function getLogoInfo()
-    {
-        return \App\Logo::all('id', 'name', 'url');
-    }
 }

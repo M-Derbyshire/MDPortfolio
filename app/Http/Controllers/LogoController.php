@@ -26,6 +26,25 @@ class LogoController extends Controller
         ]);
     }
     
+    public function deleteLogo($logo, $directory)
+    {
+        $this->deleteUploadedFile($logo->url, $directory);
+        
+        if(method_exists($logo, 'delete'))
+        {
+            $logo->delete();
+        }
+    }
+    
+    public function getLogoInfo()
+    {
+        return \App\Logo::all('id', 'name', 'url');
+    }
+    
+    
+    
+    
+    
     
     /**
      * Display a listing of the resource.
