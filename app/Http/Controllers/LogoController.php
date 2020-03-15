@@ -26,29 +26,6 @@ class LogoController extends Controller
         ]);
     }
     
-    public function deleteLogoFile($logo, $directory)
-    {
-        if(isset($logo->url))
-        {
-            unlink(public_path($directory.'/'.$logo->url));
-        }
-    }
-    
-    public function deleteLogo($logo, $directory)
-    {
-        $this->deleteLogoFile($logo, $directory);
-        
-        if(method_exists($logo, 'delete'))
-        {
-            $logo->delete();
-        }
-    }
-    
-    public function generateLogoUrl($logo, $imageFile)
-    {
-        return \str_replace(' ', '_', $imageFile->getClientOriginalName().'_'.$logo->id.'.'.$imageFile->getClientOriginalExtension());
-    }
-    
     
     /**
      * Display a listing of the resource.
@@ -110,8 +87,7 @@ class LogoController extends Controller
             ]);
             
             $imageFile = $request->file;
-            $logo->url = $this->generateLogoUrl($logo, $imageFile);
-            $imageFile->move($this->logoDirectory.'/', $logo->url);
+            $logo->url = $this->storeUploadedFile($request->file, $logo->id, $this->logoDirectory);
             $logo->save();
         }
         catch(Exception $e)
@@ -189,12 +165,9 @@ class LogoController extends Controller
             
             if(isset($request->file))
             {
-                $this->deleteLogoFile($logo, $this->logoDirectory);
+                $this->deleteUploadedFile($logo->url, $this->logoDirectory);
                 
-                $imageFile = $request->file;
-                
-                $logo->url = $this->generateLogoUrl($logo, $imageFile);
-                $imageFile->move($this->logoDirectory.'/', $logo->url);
+                $logo->url = $this->storeUploadedFile($request->file, $logo->id, $this->logoDirectory);
             }
             
             $logo->name = $request->name;
