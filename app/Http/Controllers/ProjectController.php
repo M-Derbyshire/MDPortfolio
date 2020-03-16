@@ -21,7 +21,8 @@ class ProjectController extends Controller
             'smallDescription' => 'required',
             'description' => 'required',
             'selectedLogoID' => 'required|exists:logos,id',
-            'githubUrl' => 'url'
+            'githubUrl' => 'url',
+            'liveUrl' => 'url'
             //Don't need any validation for the zip file (rarely, it may not be a zip)
         ]);
     }
@@ -87,11 +88,15 @@ class ProjectController extends Controller
                 'description' => $request->description,
                 'logo_id' => $request->selectedLogoID,
                 'githubUrl' => $request->githubUrl,
+                'liveUrl' => $request->liveUrl,
                 'zipUrl' => '' //Will set this below
             ]);
             
-            $project->zipUrl = $this->storeUploadedFile($request->zipFile, $project->id, $this->fileDirectory);
-            $project->save();
+            if(isset($request->zipFile))
+            {
+                $project->zipUrl = $this->storeUploadedFile($request->zipFile, $project->id, $this->fileDirectory);
+                $project->save();
+            }
         }
         catch(Exception $e)
         {
@@ -138,7 +143,8 @@ class ProjectController extends Controller
             'projectSmallDescription' => $project->smallDescription,
             'projectDescription' => $project->description,
             'currentLogoId' => $project->logo_id,
-            'projectGithubUrl' => $project->githubUrl
+            'projectGithubUrl' => $project->githubUrl,
+            'projectLiveUrl' => $project->liveUrl
         ]);
     }
 
@@ -165,7 +171,10 @@ class ProjectController extends Controller
             
             if(isset($request->zipFile))
             {
-                $this->deleteUploadedFile($project->zipUrl, $this->fileDirectory);
+                if($project->zipUrl != '')
+                {
+                    $this->deleteUploadedFile($project->zipUrl, $this->fileDirectory);
+                }
                 
                 $project->zipUrl = $this->storeUploadedFile($request->zipFile, $project->id, $this->fileDirectory);
             }
@@ -175,6 +184,7 @@ class ProjectController extends Controller
             $project->description = $request->description;
             $project->logo_id = $request->selectedLogoID;
             $project->githubUrl = $request->githubUrl;
+            $project->liveUrl = $request->liveUrl;
             $project->save();
         }
         catch(Exception $e)
@@ -198,7 +208,11 @@ class ProjectController extends Controller
         
         if(isset($project))
         {
-            $this->deleteUploadedFile($project->zipUrl, $this->fileDirectory);
+            if(!is_null($project->zipUrl) && $project->zipUrl != '')
+            {
+                $this->deleteUploadedFile($project->zipUrl, $this->fileDirectory);
+            }
+            
             $project->delete();
         }
         else

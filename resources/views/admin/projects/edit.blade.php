@@ -80,6 +80,18 @@
             ])
             
             @include('admin.partials.inputContainer', [
+                'inputName' => 'liveUrl',
+                'inputLabel' => 'App URL:',
+                'inputField' => '<input 
+                    type="text" 
+                    class="form-control" 
+                    name="liveUrl" 
+                    id="liveUrlInput" 
+                    value="'.($projectLiveUrl ?? (old('liveUrl'))).'"  
+                />'
+            ])
+            
+            @include('admin.partials.inputContainer', [
                 'inputName' => 'zipFile',
                 'inputLabel' => (isset($zipFileUrl) ? 'Replace' : 'Upload').' Zip File:',
                 'inputField' => '<input 
