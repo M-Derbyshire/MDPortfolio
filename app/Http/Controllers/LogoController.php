@@ -36,11 +36,6 @@ class LogoController extends Controller
         }
     }
     
-    public function getLogoInfo()
-    {
-        return \App\Logo::all('id', 'name', 'url');
-    }
-    
     
     
     
@@ -105,7 +100,6 @@ class LogoController extends Controller
                 'url' => ''
             ]);
             
-            $imageFile = $request->file;
             $logo->url = $this->storeUploadedFile($request->file, $logo->id, $this->logoDirectory);
             $logo->save();
         }

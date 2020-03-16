@@ -14,8 +14,9 @@
     @include('admin.partials.customMessages')
     
     <form 
-        action="{{ isset($id) ? '/admin/projects/edit/'.$id : '/admin/projects/create' }}" 
+        action="{{ isset($id) ? '/admin/projects/'.$id : '/admin/projects' }}" 
         method="post" 
+        enctype="multipart/form-data" {{-- Required to make the file upload work correctly --}}
     >
         @csrf
         
@@ -26,45 +27,40 @@
         <div class="form-group">
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'projectTitleInput',
+                'inputName' => 'title',
                 'inputLabel' => 'Project Title:',
-                'inputErrorName' => 'titleError',
                 'inputField' => '<input 
                     type="text" 
                     class="form-control" 
-                    name="projectTitleInput" 
-                    id="projectTitleInput" 
-                    value="'.($projectTitle ?? '').'" 
+                    name="title" 
+                    id="titleInput" 
+                    value="'.($projectTitle ?? (old('title'))).'" 
                     required 
                 />'
             ])
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'projectSmallDescriptionInput',
+                'inputName' => 'smallDescription',
                 'inputLabel' => 'Small Description:',
-                'inputErrorName' => 'smallDescriptionError',
                 'inputField' => '<textarea 
                     rows="2"
                     class="form-control" 
-                    name="projectSmallDescriptionInput" 
-                    id="projectSmallDescriptionInput" 
-                    value="'.( $projectSmallDescription ?? '' ).'" 
+                    name="smallDescription" 
+                    id="smallDescriptionInput" 
                     required 
-                ></textarea>'
+                >'.($projectSmallDescription ?? (old('smallDescription'))).'</textarea>'
             ])
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'projectDescriptionInput',
+                'inputName' => 'description',
                 'inputLabel' => 'Full Description:',
-                'inputErrorName' => 'descriptionError',
                 'inputField' => '<textarea 
                     rows="8"
                     class="form-control" 
-                    name="projectDescriptionInput" 
-                    id="projectDescriptionInput" 
-                    value="'.( $projectDescription ?? '' ).'" 
+                    name="description" 
+                    id="descriptionInput" 
                     required 
-                ></textarea>'
+                >'.($projectDescription ?? (old('description'))).'</textarea>'
             ])
             
             
@@ -72,28 +68,26 @@
             
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'projectGithubInput',
+                'inputName' => 'githubUrl',
                 'inputLabel' => 'GitHub URL:',
-                'inputErrorName' => 'githubError',
                 'inputField' => '<input 
                     type="text" 
                     class="form-control" 
-                    name="projectGithubInput" 
-                    id="projectGithubInput" 
-                    value="'.( $projectGithubURL ?? '' ).'"  
+                    name="githubUrl" 
+                    id="githubUrlInput" 
+                    value="'.($projectGithubUrl ?? (old('githubUrl'))).'"  
                 />'
             ])
             
             @include('admin.partials.inputContainer', [
-                'inputName' => 'projectZipFileInput',
+                'inputName' => 'zipFile',
                 'inputLabel' => (isset($zipFileUrl) ? 'Replace' : 'Upload').' Zip File:',
-                'inputErrorName' => 'zipFileError',
                 'inputField' => '<input 
                     type="file" 
                     class="form-control" 
-                    accept=".zip" 
-                    name="projectZipFileInput" 
-                    id="projectZipFileInput" 
+                    name="zipFile" 
+                    id="zipFileInput" 
+                    {{-- Decided to not only accept zip files here, for versatility's sake --}}
                 />'
             ])
             

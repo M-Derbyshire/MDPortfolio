@@ -1,11 +1,12 @@
 <label for="selectedLogoID">Select a Logo:</label>
 <div id="logoSelector">
+    
+    @php
+        //If the logo is not set, select the first logo.
+        $currentLogoId = ($currentLogoId ?? $logos[0]['id'] ?? 0);
+    @endphp
+
     @if(isset($logos) && count($logos) > 0)
-        
-        @php
-            //If the logo is not set, select the first logo.
-            $currentLogoId = ($currentLogoId ?? $logos[0]['id'] ?? 0);
-        @endphp
         
         @for($i = 0; $i < count($logos); $i++)
             

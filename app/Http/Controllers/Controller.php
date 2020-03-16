@@ -17,12 +17,17 @@ class Controller extends BaseController
         return redirect($backUrl)->with('customErrors', [$errorText])->withInput();;
     }
     
-    
-    
-    public function storeUploadedFile($imageFile, $recordId, $logoDirectory)
+    public function getLogoInfo()
     {
-        $url = $this->generateUploadedFileUrl($recordId, $imageFile);
-        $imageFile->move($logoDirectory.'/', $url);
+        return \App\Logo::all('id', 'name', 'url');
+    }
+    
+    
+    
+    public function storeUploadedFile($file, $recordId, $directory)
+    {
+        $url = $this->generateUploadedFileUrl($recordId, $file);
+        $file->move($directory.'/', $url);
         return $url;
     }
     
@@ -34,8 +39,8 @@ class Controller extends BaseController
         }
     }
     
-    public function generateUploadedFileUrl($fileId, $imageFile)
+    public function generateUploadedFileUrl($fileId, $file)
     {
-        return \str_replace(' ', '_', $imageFile->getClientOriginalName().'_'.$fileId.'.'.$imageFile->getClientOriginalExtension());
+        return \str_replace(' ', '_', $file->getClientOriginalName().'_'.$fileId.'.'.$file->getClientOriginalExtension());
     }
 }
