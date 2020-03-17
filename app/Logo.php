@@ -39,6 +39,11 @@ class Logo extends Model
         return $this->hasMany(Tool::class);
     }
     
+    function CVs()
+    {
+        return $this->hasMany(CV::class, 'logo_id');
+    }
+    
     function lastChangedBy()
     {
         return $this->hasOne(User::class, 'lastChangedBy');
@@ -50,7 +55,8 @@ class Logo extends Model
         if(
             $this->aboutLinks()->count() > 0 ||
             $this->projects()->count() > 0 ||
-            $this->tools()->count() > 0
+            $this->tools()->count() > 0 ||
+            $this->CVs()->count() > 0
         )
         {
             return true;

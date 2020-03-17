@@ -25,6 +25,9 @@ class CV extends Model
     ];
     
     
+    protected $table = 'cvs';
+    
+    
     
     public function logo()
     {
