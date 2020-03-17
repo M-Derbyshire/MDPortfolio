@@ -37,5 +37,6 @@ class EventServiceProvider extends ServiceProvider
         \App\Tool::observe(\App\Observers\ModelObserver::class);
         \App\AboutLink::observe(\App\Observers\ModelObserver::class);
         \App\Logo::observe(\App\Observers\ModelObserver::class);
+        \App\CV::observe(\App\Observers\ModelObserver::class);
     }
 }
