@@ -21,8 +21,8 @@ class ProjectController extends Controller
             'smallDescription' => 'required',
             'description' => 'required',
             'selectedLogoID' => 'required|exists:logos,id',
-            'githubUrl' => 'url',
-            'liveUrl' => 'url',
+            'githubUrl' => 'nullable|url',
+            'liveUrl' => 'nullable|url',
             'order' => 'numeric'
             //Don't need any validation for the zip file (rarely, it may not be a zip)
         ]);
@@ -88,8 +88,8 @@ class ProjectController extends Controller
                 'smallDescription' => $request->smallDescription,
                 'description' => $request->description,
                 'logo_id' => $request->selectedLogoID,
-                'githubUrl' => $request->githubUrl,
-                'liveUrl' => $request->liveUrl,
+                'githubUrl' => $request->githubUrl ?? '',
+                'liveUrl' => $request->liveUrl ?? '',
                 'zipUrl' => '', //Will set this below
                 'order' => $request->order
             ]);
@@ -186,8 +186,8 @@ class ProjectController extends Controller
             $project->smallDescription = $request->smallDescription;
             $project->description = $request->description;
             $project->logo_id = $request->selectedLogoID;
-            $project->githubUrl = $request->githubUrl;
-            $project->liveUrl = $request->liveUrl;
+            $project->githubUrl = $request->githubUrl ?? '';
+            $project->liveUrl = $request->liveUrl ?? '';
             $project->order = $request->order;
             $project->save();
         }
