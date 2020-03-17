@@ -66,6 +66,8 @@
             
             @include('admin.partials.logoSelector')
             
+            @include('admin.partials.orderInput')
+            
         </div>
         
         <button type="submit" class="btn btn-primary">Save</button>

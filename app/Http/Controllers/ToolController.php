@@ -17,7 +17,8 @@ class ToolController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'selectedLogoID' => 'required|exists:logos,id'
+            'selectedLogoID' => 'required|exists:logos,id',
+            'order' => 'numeric'
         ]);
     }
     
@@ -28,7 +29,7 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $tools = \App\Tool::all();
+        $tools = \App\Tool::orderBy('order')->get();
         $menuItems = [];
         
         foreach($tools as $tool)
@@ -77,7 +78,8 @@ class ToolController extends Controller
         {
             $tool = \App\Tool::create([
                 'name' => $request->name,
-                'logo_id' => $request->selectedLogoID
+                'logo_id' => $request->selectedLogoID,
+                'order' => $request->order
             ]);
         }
         catch(Exception $e)
@@ -122,7 +124,8 @@ class ToolController extends Controller
             'logos' => $logos,
             'id' => $id,
             'toolName' => $tool->name,
-            'currentLogoId' => $tool->logo_id
+            'currentLogoId' => $tool->logo_id,
+            'order' => $tool->order
         ]);
     }
 
@@ -148,6 +151,7 @@ class ToolController extends Controller
             
             $tool->name = $request->name;
             $tool->logo_id = $request->selectedLogoID;
+            $tool->order = $request->order;
             $tool->save();
         }
         catch(Exception $e)

@@ -22,7 +22,8 @@ class ProjectController extends Controller
             'description' => 'required',
             'selectedLogoID' => 'required|exists:logos,id',
             'githubUrl' => 'url',
-            'liveUrl' => 'url'
+            'liveUrl' => 'url',
+            'order' => 'numeric'
             //Don't need any validation for the zip file (rarely, it may not be a zip)
         ]);
     }
@@ -35,7 +36,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = \App\Project::all();
+        $projects = \App\Project::orderBy('order')->get();
         $menuItems = [];
         
         foreach($projects as $project)
@@ -89,7 +90,8 @@ class ProjectController extends Controller
                 'logo_id' => $request->selectedLogoID,
                 'githubUrl' => $request->githubUrl,
                 'liveUrl' => $request->liveUrl,
-                'zipUrl' => '' //Will set this below
+                'zipUrl' => '', //Will set this below
+                'order' => $request->order
             ]);
             
             if(isset($request->zipFile))
@@ -144,7 +146,8 @@ class ProjectController extends Controller
             'projectDescription' => $project->description,
             'currentLogoId' => $project->logo_id,
             'projectGithubUrl' => $project->githubUrl,
-            'projectLiveUrl' => $project->liveUrl
+            'projectLiveUrl' => $project->liveUrl,
+            'order' => $project->order
         ]);
     }
 
@@ -185,6 +188,7 @@ class ProjectController extends Controller
             $project->logo_id = $request->selectedLogoID;
             $project->githubUrl = $request->githubUrl;
             $project->liveUrl = $request->liveUrl;
+            $project->order = $request->order;
             $project->save();
         }
         catch(Exception $e)

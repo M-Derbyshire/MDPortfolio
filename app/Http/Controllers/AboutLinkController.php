@@ -19,7 +19,8 @@ class AboutLinkController extends Controller
             'name' => 'required',
             'text' => 'required',
             'url' => 'required|url',
-            'selectedLogoID' => 'required|exists:logos,id'
+            'selectedLogoID' => 'required|exists:logos,id',
+            'order' => 'numeric'
         ]);
     }
     
@@ -33,7 +34,7 @@ class AboutLinkController extends Controller
      */
     public function index()
     {
-        $links = \App\AboutLink::all();
+        $links = \App\AboutLink::orderBy('order')->get();
         $menuItems = [];
         
         foreach($links as $link)
@@ -84,7 +85,8 @@ class AboutLinkController extends Controller
                 'name' => $request->name,
                 'text' => $request->text,
                 'url' => $request->url,
-                'logo_id' => $request->selectedLogoID
+                'logo_id' => $request->selectedLogoID,
+                'order' => $request->order
             ]);
         }
         catch(Exception $e)
@@ -131,7 +133,8 @@ class AboutLinkController extends Controller
             'linkName' => $link->name,
             'linkText' => $link->text,
             'linkUrl' => $link->url,
-            'currentLogoId' => $link->logo_id
+            'currentLogoId' => $link->logo_id,
+            'order' => $link->order
         ]);
     }
 
@@ -159,6 +162,7 @@ class AboutLinkController extends Controller
             $link->text = $request->text;
             $link->url = $request->url;
             $link->logo_id = $request->selectedLogoID;
+            $link->order = $request->order;
             $link->save();
         }
         catch(Exception $e)
