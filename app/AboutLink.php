@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AboutLink extends Model
 {
-    //The table name fro the model
+    //The table name for the model
     protected $table = 'aboutLinks';
     
     /**
