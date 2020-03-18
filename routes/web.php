@@ -35,3 +35,8 @@ Route::resource('/admin/logos', 'LogoController');
 Route::resource('/admin/aboutlinks', 'AboutLinkController');
 Route::resource('/admin/tools', 'ToolController');
 Route::resource('/admin/projects', 'ProjectController');
+
+Route::get('/admin/cv', 'CVController@edit');
+Route::post('/admin/cv', 'CVController@update');
+Route::patch('/admin/cv', 'CVController@update');
+Route::delete('/admin/cv', 'CVController@destroy');

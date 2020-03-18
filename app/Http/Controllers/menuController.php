@@ -18,6 +18,7 @@ class MenuController extends Controller
             [ 'name' => 'Tools', 'url' => '/admin/tools' ],
             [ 'name' => 'Projects', 'url' => '/admin/projects' ],
             [ 'name' => 'About Links', 'url' => '/admin/aboutlinks' ],
+            [ 'name' => 'C.V', 'url' => '/admin/cv' ],
             [ 'name' => 'Create User', 'url' => '/admin/users/create' ],
             //Will get the authenticated user's data in the controller method for edits and password changes
             [ 'name' => 'Edit My Account', 'url' => '/admin/users/edit' ],
