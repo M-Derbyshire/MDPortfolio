@@ -106,7 +106,8 @@ class ProjectController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        return redirect('/admin/projects/'.$project->id.'/edit');
+        $savedMessage = "Project has successfully been created"; 
+        return redirect('/admin/projects/'.$project->id.'/edit')->with('customMessages', [$savedMessage]);
     }
 
     /**
@@ -197,7 +198,8 @@ class ProjectController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        return redirect('/admin/projects/'.$project->id.'/edit');
+        $savedMessage = "Project has been updated"; 
+        return redirect('/admin/projects/'.$project->id.'/edit')->with('customMessages', [$savedMessage]);
     }
 
     /**
