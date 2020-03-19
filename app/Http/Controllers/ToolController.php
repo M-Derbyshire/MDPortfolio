@@ -88,7 +88,8 @@ class ToolController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        return redirect('/admin/tools/'.$tool->id.'/edit');
+        $savedMessage = "Tool has successfully been created"; 
+        return redirect('/admin/tools/'.$tool->id.'/edit')->with('customMessages', [$savedMessage]);
     }
 
     /**
@@ -160,7 +161,8 @@ class ToolController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        return redirect('/admin/tools/'.$tool->id.'/edit');
+        $savedMessage = "Tool has been updated"; 
+        return redirect('/admin/tools/'.$tool->id.'/edit')->with('customMessages', [$savedMessage]);
     }
 
     /**
