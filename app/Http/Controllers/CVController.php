@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Exception;
 
 class CVController extends Controller
 {
@@ -49,31 +50,39 @@ class CVController extends Controller
     {
         $this->validator($request);
         
-        $cv = \App\CV::first();
+        try
+        {
+            $cv = \App\CV::first();
         
-        if(is_null($cv))
-        {
-            $cv = \App\CV::create([
-                'logo_id' => $request->selectedLogoID,
-                'url' => '' //Will set the file url below
-            ]);
-        }
-        else
-        {
-            $cv->logo_id = $request->selectedLogoID;
-        }
-        
-        if(isset($request->file))
-        {
-            if(isset($cv->url) && $cv->url != '')
+            if(is_null($cv))
             {
-                $this->deleteUploadedFile($cv->url, $this->cvDirectory);
+                $cv = \App\CV::create([
+                    'logo_id' => $request->selectedLogoID,
+                    'url' => '' //Will set the file url below
+                ]);
+            }
+            else
+            {
+                $cv->logo_id = $request->selectedLogoID;
             }
             
-            $cv->url = $this->storeUploadedFile($request->file, $cv->id, $this->cvDirectory);
+            if(isset($request->file))
+            {
+                if(isset($cv->url) && $cv->url != '')
+                {
+                    $this->deleteUploadedFile($cv->url, $this->cvDirectory);
+                }
+                
+                $cv->url = $this->storeUploadedFile($request->file, $cv->id, $this->cvDirectory);
+            }
+            
+            $cv->save();
         }
-        
-        $cv->save();
+        catch(Exception $e)
+        {
+            $errorText = "Unexpected error has occured: ".$e->getMessage();
+            return redirect()->back()->with('customErrors', [$errorText])->withInput();
+        }
         
         $savedMessage = "C.V has now been updated"; 
         return redirect('/admin/cv')->with('customMessages', [$savedMessage]);
