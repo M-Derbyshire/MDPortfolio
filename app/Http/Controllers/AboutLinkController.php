@@ -95,7 +95,8 @@ class AboutLinkController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        return redirect('/admin/aboutlinks/'.$link->id.'/edit');
+        $savedMessage = "About Link has successfully been created"; 
+        return redirect('/admin/aboutlinks/'.$link->id.'/edit')->with('customMessages', [$savedMessage]);
     }
 
     /**
@@ -171,7 +172,8 @@ class AboutLinkController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        return redirect('/admin/aboutlinks/'.$link->id.'/edit');
+        $savedMessage = "About Link has been updated"; 
+        return redirect('/admin/aboutlinks/'.$link->id.'/edit')->with('customMessages', [$savedMessage]);
     }
 
     /**
