@@ -39,6 +39,6 @@ class User extends Authenticatable
     
     function lastChangedBy()
     {
-        return $this->hasOne(User::class, 'lastChangedBy');
+        return $this->hasOne(User::class, 'user.id', 'lastChangedBy');
     }
 }

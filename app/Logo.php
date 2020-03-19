@@ -26,7 +26,7 @@ class Logo extends Model
     
     function lastChangedBy()
     {
-        return $this->hasOne(User::class, 'lastChangedBy');
+        return $this->hasOne(User::class, 'user.id', 'lastChangedBy');
     }
     
     //Is this logo currently being used?

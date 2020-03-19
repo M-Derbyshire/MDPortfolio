@@ -29,11 +29,11 @@ class AboutLink extends Model
     
     public function logo()
     {
-        return $this->hasOne(Logo::class);
+        return $this->hasOne(Logo::class, 'id', 'logo_id');
     }
     
     function lastChangedBy()
     {
-        return $this->hasOne(User::class, 'lastChangedBy');
+        return $this->hasOne(User::class, 'user.id', 'lastChangedBy');
     }
 }
