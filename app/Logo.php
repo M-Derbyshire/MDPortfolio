@@ -24,26 +24,6 @@ class Logo extends Model
         'lastChangedBy'
     ];
     
-    function aboutLinks()
-    {
-        return $this->hasMany(AboutLink::class);
-    }
-    
-    function projects()
-    {
-        return $this->hasMany(Project::class);
-    }
-    
-    function tools()
-    {
-        return $this->hasMany(Tool::class);
-    }
-    
-    function CVs()
-    {
-        return $this->hasMany(CV::class, 'logo_id');
-    }
-    
     function lastChangedBy()
     {
         return $this->hasOne(User::class, 'lastChangedBy');
@@ -52,14 +32,19 @@ class Logo extends Model
     //Is this logo currently being used?
     function inUse()
     {
-        if(
-            $this->aboutLinks()->count() > 0 ||
-            $this->projects()->count() > 0 ||
-            $this->tools()->count() > 0 ||
-            $this->CVs()->count() > 0
-        )
+        $relationClassList = [
+            AboutLink::class,
+            Project::class,
+            Tool::class,
+            CV::class
+        ];
+        
+        foreach($relationClassList as $class)
         {
-            return true;
+            if($this->hasMany($class)->count() > 0)
+            {
+                return true;
+            }
         }
         
         return false;
