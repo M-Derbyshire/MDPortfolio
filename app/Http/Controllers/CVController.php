@@ -75,7 +75,8 @@ class CVController extends Controller
         
         $cv->save();
         
-        return redirect('/admin/cv');
+        $savedMessage = "C.V has now been updated"; 
+        return redirect('/admin/cv')->with('customMessages', [$savedMessage]);
     }
     
     public function destroy()
