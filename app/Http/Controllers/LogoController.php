@@ -115,7 +115,8 @@ class LogoController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        return redirect('/admin/logos/'.$logo->id.'/edit');
+        $savedMessage = "Logo has successfully been created"; 
+        return redirect('/admin/logos/'.$logo->id.'/edit')->with('customMessages', [$savedMessage]);
     }
 
     /**
@@ -192,7 +193,8 @@ class LogoController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        return redirect('/admin/logos/'.$logo->id.'/edit');
+        $savedMessage = "Logo has been updated"; 
+        return redirect('/admin/logos/'.$logo->id.'/edit')->with('customMessages', [$savedMessage]);
     }
 
     /**
