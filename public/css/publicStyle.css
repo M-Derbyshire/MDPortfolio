@@ -1,0 +1,23 @@
+#contentContainer {
+    border: 3px solid #000000;
+    border-radius: 1.5em;
+    margin: 1em auto;
+    padding: 1em 2em;
+}
+
+#notFoundReturnBtn {
+    margin: 1em 0;
+}
+
+#projectHeader {
+    text-align: center;
+    width: 75%;
+}
+
+#projectHeader img {
+    width: 5em;
+}
+
+#backToProjectMenuBtn {
+    margin: 1em 0 2em 0;
+}

@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('');
-});
+Route::get('/', 'PublicController@index');
+Route::get('/projects', 'PublicController@projectList');
+Route::get('/projects/{id}', 'PublicController@project');
 
 Route::get('/admin', 'MenuController@index');
 
