@@ -24,4 +24,22 @@
             {!! $project->description !!} {{-- This is properly prepared in the controller --}}
         </p>
     </div>
+    
+    @if(isset($project->liveUrl) && $project->liveUrl != '')
+        <div class="row projectUrlLink">
+            <strong><a href="{{ $project->liveUrl }}" target="_blank">Try Out this Application</a></strong>
+        </div>
+    @endif
+    
+    @if(isset($project->githubUrl) && $project->githubUrl != '')
+        <div class="row projectUrlLink">
+            <strong><a href="{{ $project->githubUrl }}" target="_blank">View this Project on GitHub</a></strong>
+        </div>
+    @endif
+    
+    @if(isset($project->zipUrl) && $project->zipUrl != '')
+        <div class="row projectUrlLink">
+            <strong><a href="/uploads/files/{{ $project->zipUrl }}">Download the Project Files</a></strong>
+        </div>
+    @endif
 @endsection

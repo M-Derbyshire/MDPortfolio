@@ -21,3 +21,7 @@
 #backToProjectMenuBtn {
     margin: 1em 0 2em 0;
 }
+
+.projectUrlLink {
+    margin: 0.5em auto;
+}
