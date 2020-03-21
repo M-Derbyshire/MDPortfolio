@@ -13,6 +13,14 @@ class PublicController extends Controller
         return view('public.index');
     }
     
+    public function projectList()
+    {
+        $projects = \App\Project::select('id', 'title', 'smallDescription', 'logo_id')
+            ->orderBy('order')->with('logo')->get();
+        
+        return view('public.projectList', ['projects' => $projects]);
+    }
+    
     public function project($id)
     {
         $project = \App\Project::with('logo')->find($id);
@@ -22,16 +30,25 @@ class PublicController extends Controller
             return view('public.projectNotFound');
         }
         
-        //The description may contain multiple paragraphs, so we want to preserve these,
-        //but since we'll be printing this out raw, we need to escape any html currently
-        //in there (however, we want to preserve the basic formattings of <strong> and <em>).
-        $project->description = \htmlentities($project->description);
-        $project->description = str_replace("&lt;em&gt;", "<em>", $project->description);
-        $project->description = str_replace("&lt;/em&gt;", "</em>", $project->description);
-        $project->description = str_replace("&lt;strong&gt;", "<strong>", $project->description);
-        $project->description = str_replace("&lt;/strong&gt;", "</strong>", $project->description);
-        $project->description = str_replace("\n", "<br/>", $project->description);
+        $project->description = $this->prepareDescription($project->description);
         
         return view('public.project', ['project' => $project]);
+    }
+    
+    
+    public function prepareDescription($description)
+    {
+        //The description or small description may contain multiple paragraphs, so we want 
+        //to preserve these, but since we'll be printing this out raw in order to do so, we 
+        //need to escape any html currently in there (however, we want to preserve the 
+        //formattings of <strong> and <em>).
+        $description = \htmlentities($description);
+        $description = str_replace("&lt;em&gt;", "<em>", $description);
+        $description = str_replace("&lt;/em&gt;", "</em>", $description);
+        $description = str_replace("&lt;strong&gt;", "<strong>", $description);
+        $description = str_replace("&lt;/strong&gt;", "</strong>", $description);
+        $description = str_replace("\n", "<br/>", $description);
+        
+        return $description;
     }
 }

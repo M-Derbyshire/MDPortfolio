@@ -5,6 +5,9 @@
     padding: 1em 2em;
 }
 
+
+
+/* project view */
 #notFoundReturnBtn {
     margin: 1em 0;
 }
@@ -23,5 +26,20 @@
 }
 
 .projectUrlLink {
-    margin: 0.5em auto;
+    margin: 1.5em auto;
+}
+
+/* projectList view */
+#projectListContainer .row {
+    margin: 2em auto;
+}
+
+#projectListContainer img {
+    width: 100%;
+    margin: 1em auto;
+}
+
+#projectListContainer hr {
+    border-top-color: #999999;
+    margin: auto 3em;
 }
