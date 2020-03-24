@@ -33,6 +33,11 @@ class PublicController extends Controller
         $projects = \App\Project::select('id', 'title', 'smallDescription', 'logo_id')
             ->orderBy('order')->with('logo')->get();
         
+        foreach($projects as $project)
+        {
+            $project->smallDescription = $this->prepareDescription($project->smallDescription);
+        }
+        
         return view('public.projectList', ['projects' => $projects]);
     }
     
