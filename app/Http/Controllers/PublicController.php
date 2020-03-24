@@ -10,6 +10,21 @@ class PublicController extends Controller
     
     public function index()
     {
+        //Get the models from the database
+        
+        $tools = \App\Tool::select('id', 'name', 'logo_id')->orderBy('order')->with('logo')->get();
+        $projects = \App\Project::select('id', 'title', 'smallDescription', 'logo_id')
+            ->orderBy('order')->with('logo')->get();
+        $cv = \App\CV::select('id', 'url', 'logo_id')->with('logo')->first();
+        
+        //The "github" about link is a 
+        //specific link with a specific position on the page,
+        // therefore pass that through seperately.
+        $githubLink = \App\AboutLink::where('name', 'github')
+            ->select('id', 'name', 'text', 'url', 'logo_id')->with('logo')->first();
+        $aboutLinks = \App\AboutLink::where('name', '<>', 'github')
+            ->select('id', 'name', 'text', 'url', 'logo_id')->orderBy('order')->with('logo')->get();
+        
         return view('public.index');
     }
     
