@@ -25,7 +25,13 @@ class PublicController extends Controller
         $aboutLinks = \App\AboutLink::where('name', '<>', 'github')
             ->select('id', 'name', 'text', 'url', 'logo_id')->orderBy('order')->with('logo')->get();
         
-        return view('public.index');
+        return view('public.index', [
+            'tools' => $tools,
+            'projects' => $projects,
+            'cv' => $cv,
+            'githubLink' => $githubLink,
+            'aboutLinks' => $aboutLinks
+        ]);
     }
     
     public function projectList()
