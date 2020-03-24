@@ -7,6 +7,7 @@
         <title>@yield('title')</title>
         
         <link href="{{ asset('css/publicStyle.css') }}" type="text/css" rel="stylesheet">
+        <link href="@yield('secondaryStyleSheet')" type="text/css" rel="stylesheet">
         
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">

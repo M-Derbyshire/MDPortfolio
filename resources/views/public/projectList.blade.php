@@ -1,6 +1,7 @@
 @extends('layouts.public')
 
 @section('title', 'My Work')
+@section('secondaryStyleSheet', asset('css/projectsStyle.css'))
 
 @section('content')
     <div class="row justify-content-center">

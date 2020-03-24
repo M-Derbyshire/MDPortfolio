@@ -1,0 +1,36 @@
+/* project view */
+#notFoundReturnBtn {
+    margin: 1em 0;
+}
+
+#projectHeader {
+    text-align: center;
+    width: 75%;
+}
+
+#projectHeader img {
+    width: 5em;
+}
+
+#backToProjectMenuBtn {
+    margin: 1em 0 2em 0;
+}
+
+.projectUrlLink {
+    margin: 1.5em auto;
+}
+
+/* projectList view */
+#projectListContainer .row {
+    margin: 2em auto;
+}
+
+#projectListContainer img {
+    width: 100%;
+    margin: 1em auto;
+}
+
+#projectListContainer hr {
+    border-top-color: #999999;
+    margin: auto 3em;
+}
