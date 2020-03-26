@@ -14,7 +14,7 @@ class PublicController extends Controller
         
         $tools = \App\Tool::select('id', 'name', 'logo_id')->orderBy('order')->with('logo')->get();
         $projects = \App\Project::select('id', 'title', 'smallDescription', 'logo_id')
-            ->orderBy('order')->with('logo')->get();
+            ->orderBy('order')->with('logo')->take(3)->get();
         $cv = \App\CV::select('id', 'url', 'logo_id')->with('logo')->first();
         
         //The "github" about link is a 
