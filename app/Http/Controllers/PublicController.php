@@ -17,6 +17,11 @@ class PublicController extends Controller
             ->orderBy('order')->with('logo')->take(3)->get();
         $cv = \App\CV::select('id', 'url', 'logo_id')->with('logo')->first();
         
+        foreach($projects as $project)
+        {
+            $project->smallDescription = $this->prepareDescription($project->smallDescription);
+        }
+        
         //The "github" about link is a 
         //specific link with a specific position on the page,
         // therefore pass that through seperately.
