@@ -22,10 +22,14 @@ class PublicController extends Controller
             $project->smallDescription = $this->prepareDescription($project->smallDescription);
         }
         
-        //The "github" about link is a 
-        //specific link with a specific position on the page,
-        // therefore pass that through seperately.
+        //The "github", "email" and "phone" about links are 
+        //specific links with specific positions on the page,
+        // therefore pass them through seperately.
         $githubLink = \App\AboutLink::where('name', 'github')
+            ->select('id', 'name', 'text', 'url', 'logo_id')->with('logo')->first();
+        $emailLink = \App\AboutLink::where('name', 'email')
+            ->select('id', 'name', 'text', 'url', 'logo_id')->with('logo')->first();
+        $phoneLink = \App\AboutLink::where('name', 'phone')
             ->select('id', 'name', 'text', 'url', 'logo_id')->with('logo')->first();
         $aboutLinks = \App\AboutLink::where('name', '<>', 'github')
             ->select('id', 'name', 'text', 'url', 'logo_id')->orderBy('order')->with('logo')->get();
@@ -35,6 +39,8 @@ class PublicController extends Controller
             'projects' => $projects,
             'cv' => $cv,
             'githubLink' => $githubLink,
+            'emailLink' => $emailLink,
+            'phoneLink' => $phoneLink,
             'aboutLinks' => $aboutLinks
         ]);
     }
