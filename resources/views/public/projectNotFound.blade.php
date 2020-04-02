@@ -1,6 +1,7 @@
 @extends('layouts.public')
 
 @section('title', 'Project Not Found')
+@section('secondaryStyleSheet', asset('css/projectsStyle.css'))
 
 @section('content')
     <div class="row">
