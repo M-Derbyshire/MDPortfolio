@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="description" content="Portfolio CMS Admin System">
+        
         <title>Portfolio CMS - @yield('title')</title>
         
         <link href="{{ asset('css/adminStyle.css') }}" type="text/css" rel="stylesheet">
