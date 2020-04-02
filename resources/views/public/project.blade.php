@@ -3,6 +3,8 @@
 @section('title', $project->title)
 @section('secondaryStyleSheet', asset('css/projectsStyle.css'))
 
+@section('metaDescription', $project->title.' - Project Page')
+
 @section('content')
     <div class="row justify-content-center">
         <header id="projectHeader">

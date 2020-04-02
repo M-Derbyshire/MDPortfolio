@@ -3,6 +3,8 @@
 @section('title', 'My Work')
 @section('secondaryStyleSheet', asset('css/projectsStyle.css'))
 
+@section('metaDescription', 'My Projects')
+
 @section('content')
     <div class="row justify-content-center">
         <header id="projectHeader">

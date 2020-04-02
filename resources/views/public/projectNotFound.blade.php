@@ -3,6 +3,8 @@
 @section('title', 'Project Not Found')
 @section('secondaryStyleSheet', asset('css/projectsStyle.css'))
 
+@section('metaDescription', 'This project no longer exists')
+
 @section('content')
     <div class="row">
         <h1>The requested project could not be found.</h1>

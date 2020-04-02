@@ -2,9 +2,10 @@
 
 
 @php
-    //The subject's name and profession are called twice:
-    //once in the page title, and then again in the header.
-    //So set the right values here, and use these.
+    //The subject's name and profession are called multiple times:
+    //once in the page title, once in the metatags and then again 
+    //in the header. So set the right values here, and use these.
+    
     $subjectName = ($subject->name ?? '- Subject name not set -');
     $subjectProfession = ($subject->profession ?? '- Subject profession not set -');
 @endphp
@@ -12,6 +13,8 @@
 
 @section('title', $subjectName.' - '.$subjectProfession)
 @section('secondaryStyleSheet', asset('css/indexStyle.css'))
+
+@section('metaDescription', $subjectName. ' - '.$subjectProfession.' Portfolio')
 
 @section('content')
     
