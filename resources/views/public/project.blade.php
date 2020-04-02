@@ -16,7 +16,7 @@
         </header>
     </div>
     
-    <div class="row">
+    <div class="row d-flex justify-content-center justify-content-sm-start">
         <a href="/projects" class="btn btn-primary btn-sm" id="backToProjectMenuBtn">Back To Menu</a>
     </div>
     

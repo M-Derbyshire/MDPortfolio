@@ -12,7 +12,7 @@
     </div>
     
     <div class="row" id="backToHomeBtn">
-        <div class="col-9 offset-1">
+        <div class="col-md-9 offset-md-1 d-flex justify-content-center justify-content-md-start">
             <a href="/" class="btn btn-primary btn-sm" id="backToHomeBtn">Back to Home</a>
         </div>
     </div>
