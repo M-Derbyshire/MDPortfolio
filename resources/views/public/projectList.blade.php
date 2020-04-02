@@ -11,6 +11,12 @@
         </header>
     </div>
     
+    <div class="row" id="backToHomeBtn">
+        <div class="col-9 offset-1">
+            <a href="/" class="btn btn-primary btn-sm" id="backToHomeBtn">Back to Home</a>
+        </div>
+    </div>
+    
     <div class="row">
         <div class="container-fluid" id="projectListContainer">
             @for($i = 0; $i < count($projects); $i++)
