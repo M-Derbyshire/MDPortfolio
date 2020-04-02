@@ -28,7 +28,7 @@
                         <p>
                             {!! $projects[$i]->smallDescription !!} {{-- This is properly prepared in the controller --}}
                         </p>
-                        <a href="/projects/{{ $projects[$i]->id }}" class="btn btn-primary">Read More</a>
+                        <a href="/projects/{{ $projects[$i]->id }}" class="btn btn-secondary">Read More</a>
                     </div>
                 </div>
                 
