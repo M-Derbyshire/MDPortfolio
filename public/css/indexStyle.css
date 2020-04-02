@@ -1,0 +1,252 @@
+@media only screen and (min-width: 575px) {
+    #contentContainer {
+        margin-top: 10vh; /* Design decision to push the the content box down on the home page */
+    }
+}
+
+header {
+    margin-top: 8%;
+}
+
+header .row {
+    margin: 0; /* Margin defaults to -15 */
+    text-align: center !important; /* The .mx-auto doesn't have the desired effect on the main title */
+}
+
+hr {
+    border-top-color: black !important;
+    padding: 0 !important;
+}
+
+
+
+
+/* ------------- The why statement box ----------------- */
+#whyStatement {
+    margin: 4em auto;
+    padding: 1em;
+    font-size: 1.2em;
+    font-style: italic;
+    background-color: rgb(39, 150, 150);
+    color: white;
+    border-radius: 0.5em;
+    max-width: 420px;
+}
+
+#whyStatement .row {
+    margin: 0;
+}
+
+#whyStatement hr {
+    border-top-color: white !important;
+}
+
+#whyStatement p {
+    margin: 0;
+}
+
+
+
+/* --------- General styling for the section boxes --------------- */
+.sectionBox {
+    border: 3px solid black;
+    border-radius: 1.5em;
+    overflow: hidden; /* Without this, the .sectionExpandBtn will go over the rounded border */
+    max-width: 600px !important;
+    margin: 4em auto;
+}
+
+.sectionHeading {
+    margin: 1em !important;
+}
+
+.sectionItemGrid figcaption {
+    font-weight: 550;
+}
+
+.sectionExpandBtn {
+    padding: 1em 0; /* The btn needs to fill the whole of the bottom of the section */
+    color: #555555;
+}
+
+.sectionExpandBtn:hover {
+    background-color: #e7e7e7;
+    color: #222222;
+}
+
+/* Message displayed when the section has no items to show */
+.noSectionItemsMsg {
+    font-weight: 550;
+    margin: 2em auto;
+    background-color: #dddddd;
+    padding: 1em;
+    border-radius: 1.5em;
+}
+
+
+
+/* --------- The My Tool section --------------- */
+/* The tools section should not collapse fully, just partially */
+#toolsSectionGrid {
+    min-height: 240px !important;
+    border-bottom: 2px solid #dddddd;
+}
+
+#toolsSectionGrid.collapse:not(.show) {
+    display: block;
+    height: 240px !important;
+    overflow: hidden; /* Keep the collasped-over items from showing */
+}
+
+
+
+/* --------- The My Work section --------------- */
+
+/* This is not actually an expand btn, but a link to the projects page */
+#workContainer .sectionExpandBtn {
+    width: 100%;
+    text-align: center;
+}
+
+#workSectionGrid {
+    padding: 0 1em;
+    border-bottom: 2px solid #dddddd;
+}
+
+/* 
+    On very thin screens, the padding can cause the Read More btn to be uncentered.
+    This isn't a perfect solution (btn still creeps out a little to the right, 
+    but this is in the case of quite old phones, and is only slight)
+*/
+@media only screen and (max-width: 575px) {
+    #workSectionGrid {
+        padding: 0;
+    }
+}
+
+
+#workSectionGrid .lastItem {
+    /* The other items are spaced out by the hr's margin, but the last item isn't followed by a hr */
+    padding-bottom: 0.5em;
+}
+
+
+
+/* --------- The More About Me section --------------- */
+#aboutLinksContainer {
+    padding-bottom: 1em; /* As this section doesn't have an expand button, add the padding back on */
+}
+
+/* ---- The priority aboutLinks are the C.V and GitHub links. These are larger and at the top  ---- */
+#priorityAboutLinks .sectionItem {
+    margin: 1em auto;
+    padding: 0.5em;
+}
+
+#priorityAboutLinks .sectionItem figure {
+    margin: 0;
+}
+
+#priorityAboutLinks .sectionItem a {
+    color: black;
+    font-size: 1.25em;
+}
+
+#priorityAboutLinks .sectionItem:hover .thinUnderlineHover {
+    /* There are options now for styling underlines in CSS,
+    but they are fairly new, so using this for compatibility */
+    border-bottom: 1px solid black;
+    display: inline-block;
+    line-height: 1em;
+}
+
+
+/* ---- The main aboutLinks grid. This is all the other links  ---- */
+
+/* The col div that contains the main links container */
+#mainAboutLinksPositionCol {
+    border: 1px solid #bbbbbb;
+    border-width: 1px 0 1px 0; /* We just want the bottom and top borders */
+}
+
+#mainAboutLinksContainer {
+    margin: 1.5em auto;
+}
+
+#mainAboutLinksContainer .sectionItem {
+    padding: 0.1em;
+}
+
+#mainAboutLinksContainer .sectionItem:hover {
+    padding: 0.25em; /* Makes the logo smaller when hovered over */
+}
+
+
+/* ---- The main Contact Details section. Email and phone  ---- */
+#contactDetails {
+    margin: 2em auto;
+}
+
+.contactDetailsRow {
+    font-size: 1.25em;
+    margin: 1em auto;
+    
+    /* Email address can be quite long, so just break it up regardless of spacing */
+    word-break: break-all;
+    -ms-word-break: break-all;
+}
+
+.contactDetailsRow .contactDetailTitle {
+    background-color: #d5d5d5;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    font-weight: 500;
+    text-align: end;
+    padding: 0.25em 0.2em;
+}
+
+/* The info can overflow properly, but it doesn't look good, so make some changes. 
+We also want to change where the roundings of the title's borders are, to match with 
+the new position of the info (which is moved below the title on small screens) */
+@media only screen and (max-width: 575px) {
+    
+    .contactDetailsRow {
+        font-size: 1em;
+    }
+    
+    .contactDetailsRow .contactDetailTitle {
+        border-top-left-radius: 0.5em;
+        border-top-right-radius: 0.5em;
+        border-bottom-left-radius: 0;
+        text-align: center;
+    }
+    
+    .contactDetailsRow .contactDetailInfo {
+        font-weight: bold;
+    }
+}
+
+/* Extra rules for very thin screens */
+@media only screen and (max-width: 375px) {
+    .contactDetailsRow {
+        font-size: 0.8em;
+    }
+}
+
+/* The data of the contact detail (phone, email, etc) */
+.contactDetailsRow .contactDetailInfo {
+    padding: 0.25em;
+    padding-left: 0.5em;
+    border: 1px solid #c0c0c0;
+    border-top-right-radius: 0.5em;
+}
+
+/* The email info is a mailto link */
+.contactDetailsRow a {
+    color: #606060;
+    text-decoration-line: underline;
+}
+
+.contactDetailsRow a:hover {
+    color: #888888;
+}
