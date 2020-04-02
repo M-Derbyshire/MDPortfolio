@@ -17,7 +17,7 @@
     </div>
     
     <div class="row">
-        <a href="/projects" class="btn btn-secondary btn-sm" id="backToProjectMenuBtn">Back To Menu</a>
+        <a href="/projects" class="btn btn-primary btn-sm" id="backToProjectMenuBtn">Back To Menu</a>
     </div>
     
     <div class="row">
