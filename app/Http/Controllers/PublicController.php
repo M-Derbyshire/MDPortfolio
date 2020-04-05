@@ -16,11 +16,17 @@ class PublicController extends Controller
         $projects = \App\Project::select('id', 'title', 'smallDescription', 'logo_id')
             ->orderBy('order')->with('logo')->take(3)->get();
         $cv = \App\CV::select('id', 'url', 'logo_id')->with('logo')->first();
+        $subject = \App\Subject::select('name', 'profession', 'why_top', 'why_bottom', 'email', 'phone')->first();
         
         foreach($projects as $project)
         {
             $project->smallDescription = $this->prepareDescription($project->smallDescription);
         }
+        
+        //Like the project descriptions, the subect's why statment is also displayed raw
+        //to allow for <strong> formatting, so both lines need to be prepared in the same way.
+        $subject->why_top = $this->prepareDescription($subject->why_top);
+        $subject->why_bottom = $this->prepareDescription($subject->why_bottom);
         
         //The "github", "email" and "phone" about links are 
         //specific links with specific positions on the page,
@@ -34,6 +40,7 @@ class PublicController extends Controller
             'tools' => $tools,
             'projects' => $projects,
             'cv' => $cv,
+            'subject' => $subject,
             'githubLink' => $githubLink,
             'aboutLinks' => $aboutLinks
         ]);
