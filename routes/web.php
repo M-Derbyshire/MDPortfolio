@@ -42,3 +42,5 @@ Route::patch('/admin/cv', 'CVController@update');
 Route::delete('/admin/cv', 'CVController@destroy');
 
 Route::get('/admin/subject', 'SubjectController@edit');
+Route::post('/admin/subject', 'SubjectController@update');
+Route::patch('/admin/subject', 'SubjectController@update');
