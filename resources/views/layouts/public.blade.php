@@ -6,6 +6,10 @@
         <meta name="description" content="@yield('metaDescription')">
         
         @yield('socialMediaMeta')
+        {{-- These social media metatags are consistent across all pages --}}
+        <meta property="og:image" content="{{asset('images/logo_image_only.png')}}">
+        <meta property="og:url" content="{{ Request::url() }}">
+        <meta name="twitter:card" content="{{asset('images/logo_image_only.png')}}">
         
         <link rel="icon" type="image/png" href="favicon.png">
 
