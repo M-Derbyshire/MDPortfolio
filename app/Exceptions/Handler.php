@@ -50,7 +50,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return response()->view('unhandledException');
-        //return parent::render($request, $exception);
+        if($exception instanceof \Illuminate\Auth\AuthenticationException)
+        {
+            return parent::render($request, $exception);
+        }
+        else
+        {
+            return response()->view('unhandledException');
+        }
     }
 }
