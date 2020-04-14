@@ -16,6 +16,11 @@
 
 @section('metaDescription', $subjectName. ' - '.$subjectProfession.' Portfolio')
 
+@section('socialMediaMeta')
+    <meta property="og:title" content="{{ $subjectName.' - '.$subjectProfession.' Portfolio' }}">
+    <meta property="og:description" content="{{ $subjectProfession.' Portfolio of '.$subjectName.'.' }}">
+@endsection
+
 @section('content')
     
     <script src="{{ asset('/js/collapseButtonToggle.js') }}"></script>
