@@ -50,13 +50,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof \Illuminate\Auth\AuthenticationException)
+        if($exception instanceof \Illuminate\Database\QueryException)
         {
-            return parent::render($request, $exception);
+            return response()->view('unhandledException');
         }
         else
         {
-            return response()->view('unhandledException');
+            return parent::render($request, $exception);
         }
     }
 }
