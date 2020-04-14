@@ -5,6 +5,12 @@
 
 @section('metaDescription', $project->title.' - Project Page')
 
+@section('socialMediaMeta')
+    <meta property="og:title" content="{{ $project->title.' - My Work.' }}">
+    <meta property="og:description" content="{{ 'Portfolio Project: '.$project->title }}">
+    @php $socialLogo = url('/uploads/logos/'.$project->logo->url) @endphp
+@endsection
+
 @section('content')
     <div class="row justify-content-center">
         <header id="projectHeader">

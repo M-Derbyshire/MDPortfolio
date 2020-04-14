@@ -5,6 +5,11 @@
 
 @section('metaDescription', 'My Projects')
 
+@section('socialMediaMeta')
+    <meta property="og:title" content="My Work">
+    <meta property="og:description" content="My Portfolio - Projects">
+@endsection
+
 @section('content')
     <div class="row justify-content-center">
         <header id="projectHeader">
