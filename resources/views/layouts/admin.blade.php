@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Portfolio CMS Admin System">
         
-        <link rel="icon" type="image/png" href="favicon.png">
+        <link rel="icon" type="image/png" href="/favicon.png">
         
         <title>Portfolio CMS - @yield('title')</title>
         
