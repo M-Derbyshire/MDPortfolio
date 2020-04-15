@@ -45,9 +45,12 @@
                     {{ isset($fileUrl) ? "Replace" : "Upload" }} Image File:
                 </label>
                 
-                @if(isset($fileUrl))
-                    <br/><img id="logoUploadPreview" src="{{ url($fileUrl) }}" />
-                @endif
+                <br/>
+                <img 
+                    id="logoUploadPreview" 
+                    src="{{ (isset($fileUrl)) ? url($fileUrl) : '' }}" 
+                    style="{{ (!isset($fileUrl)) ? 'display: none;' : '' }}"
+                />
                 
                 <input 
                     type="file" 
