@@ -46,7 +46,7 @@
                 </label>
                 
                 @if(isset($fileUrl))
-                    <br/><img class="logoUploadPreview" src="{{ url($fileUrl) }}" />
+                    <br/><img id="logoUploadPreview" src="{{ url($fileUrl) }}" />
                 @endif
                 
                 <input 
@@ -60,6 +60,7 @@
                     @endif
                 />
                 @include('admin.partials.inputError', ['errorName' => 'file'])
+                <script src="/js/logoPreviewHandler.js"></script>
             </div>
             
         </div>
