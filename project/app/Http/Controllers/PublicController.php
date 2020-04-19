@@ -25,8 +25,14 @@ class PublicController extends Controller
         
         //Like the project descriptions, the subect's why statment is also displayed raw
         //to allow for <strong> formatting, so both lines need to be prepared in the same way.
-        $subject->why_top = $this->prepareDescription($subject->why_top);
-        $subject->why_bottom = $this->prepareDescription($subject->why_bottom);
+        if(isset($subject->why_top))
+        {
+            $subject->why_top = $this->prepareDescription($subject->why_top);
+        }
+        if(isset($subject->why_bottom))
+        {
+            $subject->why_bottom = $this->prepareDescription($subject->why_bottom);
+        }
         
         //The "github", "email" and "phone" about links are 
         //specific links with specific positions on the page,
