@@ -13,7 +13,7 @@ class AddOrderFieldToAboutLinks extends Migration
      */
     public function up()
     {
-        Schema::table('aboutlinks', function (Blueprint $table) {
+        Schema::table('aboutLinks', function (Blueprint $table) {
             $table->float('order', 5, 2)->default(0);
         });
     }
@@ -25,7 +25,7 @@ class AddOrderFieldToAboutLinks extends Migration
      */
     public function down()
     {
-        Schema::table('aboutlinks', function (Blueprint $table) {
+        Schema::table('aboutLinks', function (Blueprint $table) {
             $table->dropColumn('order');
         });
     }
