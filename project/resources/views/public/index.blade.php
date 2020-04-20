@@ -153,7 +153,7 @@
         </div>
         
         <div id="aboutLinksSectionGrid">
-            @if((!isset($aboutLinks) || count($aboutLinks) == 0) && !isset($cv) && !isset($githubLink))
+            @if((!isset($aboutLinks) || count($aboutLinks) == 0) && !isset($cv) && !isset($githubLink) && !isset($subject->email) && !isset($subject->phone))
                 <p class="noSectionItemsMsg">No Links to display</p>
             @else
                 
