@@ -122,7 +122,7 @@
                         <div class="col-6 offset-3 col-sm-3 offset-sm-0">
                             <img src="{{ url('/uploads/logos/'.$projects[$i]->logo->url) }}" class="img-fluid" />
                         </div>
-                        <div class="text-center col-6 offset-3 text-sm-left col-sm-9 offset-sm-0 projectItemDetails">
+                        <div class="text-center col-12 text-sm-left col-sm-9 offset-sm-0 projectItemDetails">
                             <h5 class="my-3 mb-sm-2 mt-sm-0">{{ $projects[$i]->title }}</h5>
                             <p class="d-none d-sm-block">{!! $projects[$i]->smallDescription !!}</p> {{-- The smallDescription is sanitized in
                                                                             the controller --}}
