@@ -35,7 +35,7 @@ class Controller extends BaseController
     {
         if(isset($fileUrl))
         {
-            unlink(public_path($directory.'/'.$fileUrl));
+            unlink($directory.'/'.$fileUrl);
         }
     }
     
