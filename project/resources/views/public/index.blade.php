@@ -86,8 +86,13 @@
             </div>
         </div>
         
-        @if(!isset($tools) || count($tools) > 4)
-            <div class="row">
+        {{-- This will only be displayed if there are enough tools for the screen width
+                (determined mainly by the display bootstrap classes) --}}
+        @if(isset($tools)) 
+            <div class="row 
+                {{ (count($tools) > 2) ? 'd-flex' : 'd-none' }} 
+                {{ (count($tools) > 4) ? 'd-sm-flex' : 'd-sm-none' }}
+            ">
                 <a 
                     class="collapsed sectionExpandBtn" 
                     href="#toolsSectionGrid" 
