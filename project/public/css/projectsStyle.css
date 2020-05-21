@@ -42,3 +42,19 @@ header {
 #backToHomeBtn {
     margin: 0.1em 0 0.5em 0;
 }
+
+@media only screen and (max-width: 450px)
+{
+    /* Some project titles, when they're long and have no spaces,
+        are going off the side of the screen. Restricted by the 
+        row/column structure, so making the text smaller (which isn't
+        detrimental to the design. */
+    
+    #projectHeader h1 {
+        font-size: 1.75em;
+    }
+    
+    #projectListContainer h3 {
+        font-size: 1.5em;
+    }
+}
