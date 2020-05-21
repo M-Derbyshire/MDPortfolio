@@ -43,7 +43,7 @@ header {
     margin: 0.1em 0 0.5em 0;
 }
 
-@media only screen and (max-width: 450px)
+@media only screen and (max-width: 575px)
 {
     /* Some project titles, when they're long and have no spaces,
         are going off the side of the screen. Restricted by the 
