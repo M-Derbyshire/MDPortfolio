@@ -12,7 +12,7 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <header id="projectHeader">
+        <header id="projectListHeader">
             <h1>My Work</h1>
             <hr />
         </header>

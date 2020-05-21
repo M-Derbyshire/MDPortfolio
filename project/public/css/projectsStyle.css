@@ -7,7 +7,7 @@ header {
     margin: 1em 0;
 }
 
-#projectHeader {
+#projectHeader, #projectListHeader {
     text-align: center;
     width: 75%;
 }
