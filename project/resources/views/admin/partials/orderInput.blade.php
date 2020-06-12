@@ -1,6 +1,6 @@
 @include('admin.partials.inputContainer', [
     'inputName' => 'order',
-    'inputLabel' => 'Order Position (Lower numbers will show first.):',
+    'inputLabel' => 'Position in Display Order:',
     'inputField' => '<input 
         type="number" 
         class="form-control" 
