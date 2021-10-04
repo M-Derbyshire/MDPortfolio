@@ -30,7 +30,7 @@
     
     <div class="row">
         <p>
-            {!! $project->description !!} {{-- This is properly prepared in the controller --}}
+            {!! $project->description !!}
         </p>
     </div>
     

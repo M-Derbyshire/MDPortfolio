@@ -11,29 +11,14 @@ class PublicController extends Controller
     public function index()
     {
         //Get the models from the database
-        
         $tools = \App\Tool::select('id', 'name', 'logo_id')->orderBy('order')->with('logo')->get();
         $projects = \App\Project::select('id', 'title', 'smallDescription', 'logo_id')
             ->orderBy('order')->with('logo')->take(3)->get();
         $cv = \App\CV::select('id', 'url', 'logo_id')->with('logo')->first();
         $subject = \App\Subject::select('name', 'profession', 'why_top', 'why_bottom', 'email', 'phone')->first();
         
-        foreach($projects as $project)
-        {
-            $project->smallDescription = $this->prepareDescription($project->smallDescription);
-        }
-        
-        //Like the project descriptions, the subect's why statment is also displayed raw
-        //to allow for <strong> formatting, so both lines need to be prepared in the same way.
-        if(isset($subject->why_top))
-        {
-            $subject->why_top = $this->prepareDescription($subject->why_top);
-        }
-        if(isset($subject->why_bottom))
-        {
-            $subject->why_bottom = $this->prepareDescription($subject->why_bottom);
-        }
-        
+		
+		
         //The "github", "email" and "phone" about links are 
         //specific links with specific positions on the page,
         // therefore pass them through seperately.
@@ -42,6 +27,8 @@ class PublicController extends Controller
         $aboutLinks = \App\AboutLink::where('name', '<>', 'github')
             ->select('id', 'name', 'text', 'url', 'logo_id')->orderBy('order')->with('logo')->get();
         
+		
+		
         return view('public.index', [
             'tools' => $tools,
             'projects' => $projects,
@@ -52,19 +39,20 @@ class PublicController extends Controller
         ]);
     }
     
+	
+	
+	
     public function projectList()
     {
         $projects = \App\Project::select('id', 'title', 'smallDescription', 'logo_id')
             ->orderBy('order')->with('logo')->get();
         
-        foreach($projects as $project)
-        {
-            $project->smallDescription = $this->prepareDescription($project->smallDescription);
-        }
-        
         return view('public.projectList', ['projects' => $projects]);
     }
     
+	
+	
+	
     public function project($id)
     {
         $project = \App\Project::with('logo')->find($id);
@@ -74,25 +62,6 @@ class PublicController extends Controller
             return view('public.projectNotFound');
         }
         
-        $project->description = $this->prepareDescription($project->description);
-        
         return view('public.project', ['project' => $project]);
-    }
-    
-    
-    public function prepareDescription($description)
-    {
-        //The description or small description may contain multiple paragraphs, so we want 
-        //to preserve these, but since we'll be printing this out raw in order to do so, we 
-        //need to escape any html currently in there (however, we want to preserve the 
-        //formattings of <strong> and <em>).
-        $description = \htmlentities($description);
-        $description = str_replace("&lt;em&gt;", "<em>", $description);
-        $description = str_replace("&lt;/em&gt;", "</em>", $description);
-        $description = str_replace("&lt;strong&gt;", "<strong>", $description);
-        $description = str_replace("&lt;/strong&gt;", "</strong>", $description);
-        $description = str_replace("\n", "<br/>", $description);
-        
-        return $description;
     }
 }

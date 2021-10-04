@@ -41,7 +41,6 @@
     
     
     <!-- Why statement section (The Why) -->
-    {{-- These values are properly sanitised in the controller, but allow <em> and <strong> --}}
     <div id="whyStatement" class="container-flex">
         <div class="row justify-content-sm-start justify-content-center">
             <p>{!! $subject->why_top ?? '- Subject top why line not set -' !!}</p>
@@ -129,8 +128,7 @@
                         </div>
                         <div class="text-center col-12 text-sm-left col-sm-9 offset-sm-0 projectItemDetails">
                             <h5 class="my-3 mb-sm-2 mt-sm-0">{{ $projects[$i]->title }}</h5>
-                            <p class="d-none d-sm-block">{!! $projects[$i]->smallDescription !!}</p> {{-- The smallDescription is sanitized in
-                                                                            the controller --}}
+                            <p class="d-none d-sm-block">{!! $projects[$i]->smallDescription !!}</p>
                             <a href="/projects/{{ $projects[$i]->id }}" class="btn btn-secondary btn-sm">Read More</a>
                         </div>
                     </div>

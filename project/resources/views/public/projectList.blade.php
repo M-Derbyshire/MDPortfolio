@@ -39,7 +39,7 @@
                         <h3><strong>{{ $projects[$i]->title }}</strong></h3>
                         <br />
                         <p>
-                            {!! $projects[$i]->smallDescription !!} {{-- This is properly prepared in the controller --}}
+                            {!! $projects[$i]->smallDescription !!}
                         </p>
                         <a href="/projects/{{ $projects[$i]->id }}" class="btn btn-secondary">Read More</a>
                     </div>
