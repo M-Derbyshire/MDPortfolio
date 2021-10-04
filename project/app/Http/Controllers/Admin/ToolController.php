@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AboutLinkController extends Controller
+class ToolController extends Controller
 {
-    protected $menuURL = "/admin/aboutlinks/";
+    protected $menuURL = "/admin/tools/";
     
     public function __construct()
     {
@@ -17,15 +18,10 @@ class AboutLinkController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'text' => 'required',
-            'url' => 'required|url',
             'selectedLogoID' => 'required|exists:logos,id',
             'order' => 'numeric'
         ]);
     }
-    
-    
-    
     
     /**
      * Display a listing of the resource.
@@ -34,24 +30,24 @@ class AboutLinkController extends Controller
      */
     public function index()
     {
-        $links = \App\AboutLink::orderBy('order')->get();
+        $tools = \App\Tool::orderBy('order')->get();
         $menuItems = [];
         
-        foreach($links as $link)
+        foreach($tools as $tool)
         {
-            array_push($menuItems, [ 'name' => $link->name, 'url' => '/admin/aboutlinks/'.$link->id.'/edit' ]);
+            array_push($menuItems, [ 'name' => $tool->name, 'url' => '/admin/tools/'.$tool->id.'/edit' ]);
         }
         
         $constantItems = [
-            [ 'name' => 'Create About Link', 'url' => '/admin/aboutlinks/create' ]
+            [ 'name' => 'Create Tool', 'url' => '/admin/tools/create' ]
         ];
         
         $allMenuItems = array_merge($constantItems, $menuItems);
         
         return view('admin.menu', [
-            'pageTitle' => 'About Links',
-            'title' => 'About Links',
-            'subtitle' => 'The links to more information about you',
+            'pageTitle' => 'Tools',
+            'title' => 'Tools',
+            'subtitle' => 'The tools (languages and technologies) you can use',
             'backLink' => '/admin',
             'menuItems' => $allMenuItems,
         ]);
@@ -66,7 +62,7 @@ class AboutLinkController extends Controller
     {
         $logos = $this->getLogoInfo();
         
-        return view('admin.aboutlinks.edit', ['menuURL' => $this->menuURL, 'logos' => $logos]);
+        return view('admin.tools.edit', ['menuURL' => $this->menuURL, 'logos' => $logos]);
     }
 
     /**
@@ -81,10 +77,8 @@ class AboutLinkController extends Controller
         
         try
         {
-            $link = \App\AboutLink::create([
+            $tool = \App\Tool::create([
                 'name' => $request->name,
-                'text' => $request->text,
-                'url' => $request->url,
                 'logo_id' => $request->selectedLogoID,
                 'order' => $request->order
             ]);
@@ -95,8 +89,8 @@ class AboutLinkController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        $savedMessage = "About Link has successfully been created"; 
-        return redirect('/admin/aboutlinks/'.$link->id.'/edit')->with('customMessages', [$savedMessage]);
+        $savedMessage = "Tool has successfully been created"; 
+        return redirect('/admin/tools/'.$tool->id.'/edit')->with('customMessages', [$savedMessage]);
     }
 
     /**
@@ -107,7 +101,7 @@ class AboutLinkController extends Controller
      */
     public function show($id)
     {
-        return redirect('/admin/aboutlinks/'.$id.'/edit');
+        return redirect('/admin/tools/'.$id.'/edit');
     }
 
     /**
@@ -118,24 +112,22 @@ class AboutLinkController extends Controller
      */
     public function edit($id)
     {
-        $link = \App\AboutLink::find($id);
+        $tool = \App\Tool::find($id);
         $logos = $this->getLogoInfo();
         
-        if(is_null($link))
+        if(is_null($tool))
         {
-            return $this->recordNotFoundRedirect('/admin/aboutlinks/create');
+            return $this->recordNotFoundRedirect('/admin/tools/create');
         }
         
-        return view('admin.aboutlinks.edit', [
+        return view('admin.tools.edit', [
             'menuURL' => $this->menuURL, 
-            'deleteURL' => '/admin/aboutlinks/'.$link->id,
+            'deleteURL' => '/admin/tools/'.$tool->id,
             'logos' => $logos,
             'id' => $id,
-            'linkName' => $link->name,
-            'linkText' => $link->text,
-            'linkUrl' => $link->url,
-            'currentLogoId' => $link->logo_id,
-            'order' => $link->order
+            'toolName' => $tool->name,
+            'currentLogoId' => $tool->logo_id,
+            'order' => $tool->order
         ]);
     }
 
@@ -152,19 +144,17 @@ class AboutLinkController extends Controller
         
         try
         {
-            $link = \App\AboutLink::find($id);
+            $tool = \App\Tool::find($id);
             
-            if(is_null($link))
+            if(is_null($tool))
             {
                 return redirect()->back();
             }
             
-            $link->name = $request->name;
-            $link->text = $request->text;
-            $link->url = $request->url;
-            $link->logo_id = $request->selectedLogoID;
-            $link->order = $request->order;
-            $link->save();
+            $tool->name = $request->name;
+            $tool->logo_id = $request->selectedLogoID;
+            $tool->order = $request->order;
+            $tool->save();
         }
         catch(Exception $e)
         {
@@ -172,8 +162,8 @@ class AboutLinkController extends Controller
             return redirect()->back()->with('customErrors', [$errorText])->withInput();
         }
         
-        $savedMessage = "About Link has been updated"; 
-        return redirect('/admin/aboutlinks/'.$link->id.'/edit')->with('customMessages', [$savedMessage]);
+        $savedMessage = "Tool has been updated"; 
+        return redirect('/admin/tools/'.$tool->id.'/edit')->with('customMessages', [$savedMessage]);
     }
 
     /**
@@ -184,11 +174,11 @@ class AboutLinkController extends Controller
      */
     public function destroy($id)
     {
-        $link = \App\AboutLink::find($id);
+        $tool = \App\Tool::find($id);
         
-        if(isset($link))
+        if(isset($tool))
         {
-            $link->delete();
+            $tool->delete();
         }
         else
         {
